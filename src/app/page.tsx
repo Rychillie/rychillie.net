@@ -19,7 +19,7 @@ export default function Home() {
             collaborating with Open Source projects.
           </Text>
           <Text>
-            Read further on <CustomLink href="#">now</CustomLink> page.
+            Read further on <CustomLink href="/now">now</CustomLink> page.
           </Text>
         </section>
       </AnimateEnter>
