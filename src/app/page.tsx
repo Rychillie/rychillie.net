@@ -1,7 +1,7 @@
 'use client';
 
-import { Contact, CustomLink, Heading, Text } from '@/components/elements';
-import { AnimateEnter, Separator } from '@/components/layout';
+import { CustomLink, Heading, Text } from '@/components/elements';
+import { AnimateEnter, Contact, Separator } from '@/components/layout';
 
 export default function Home() {
   return (
