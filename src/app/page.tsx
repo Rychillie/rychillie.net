@@ -19,25 +19,17 @@ export default function Home() {
             collaborating with Open Source projects.
           </Text>
           <Text>
-            Read further on{' '}
-            <CustomLink href="#">
-              now
-            </CustomLink>{' '}
-            page.
+            Read further on <CustomLink href="#">now</CustomLink> page.
           </Text>
         </section>
       </AnimateEnter>
       <AnimateEnter delay={0.8}>
         <nav className="flex gap-2">
           <span>
-            <CustomLink href="#">
-              Craft
-            </CustomLink>
+            <CustomLink href="#">Craft</CustomLink>
           </span>
           <span>
-            <CustomLink href="#">
-              Writing
-            </CustomLink>
+            <CustomLink href="#">Writing</CustomLink>
           </span>
         </nav>
         <Separator className="my-12" />
