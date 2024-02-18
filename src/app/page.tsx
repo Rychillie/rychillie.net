@@ -26,10 +26,10 @@ export default function Home() {
       <AnimateEnter delay={0.8}>
         <nav className="flex gap-2">
           <span>
-            <CustomLink href="#">Craft</CustomLink>
+            <CustomLink href="/craft">Craft</CustomLink>
           </span>
           <span>
-            <CustomLink href="#">Writing</CustomLink>
+            <CustomLink href="/writing">Writing</CustomLink>
           </span>
         </nav>
         <Separator className="my-12" />
@@ -39,7 +39,7 @@ export default function Home() {
       </AnimateEnter>
       <AnimateEnter delay={1.2}>
         <CustomLink
-          href="#"
+          href="/about"
           className="mt-24 inline-block cursor-pointer font-mono text-xs text-secondary decoration-neutral-300 decoration-1 underline-offset-[2.5px] transition-all hover:underline dark:text-secondary-dark dark:decoration-[#505050]"
           hideUnderline
         >
