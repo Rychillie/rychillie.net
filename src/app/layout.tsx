@@ -1,5 +1,6 @@
 import { Providers } from '@/components/layout';
 import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import c from 'clsx';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
@@ -62,6 +63,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </main>
         </Providers>
       </body>
+
+      <Analytics />
     </html>
   );
 }
