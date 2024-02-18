@@ -14,28 +14,28 @@ export default function Home() {
       </AnimateEnter>
       <AnimateEnter delay={0.6}>
         <section className="my-6 flex flex-col gap-6">
-          <p>
+          <Text>
             Creating content and Sharing knowledge over the internet. Design and technology lover
             collaborating with Open Source projects.
-          </p>
-          <p>
+          </Text>
+          <Text>
             Read further on{' '}
-            <CustomLink href="/now" ariaLabel="now page">
+            <CustomLink href="#">
               now
             </CustomLink>{' '}
             page.
-          </p>
+          </Text>
         </section>
       </AnimateEnter>
       <AnimateEnter delay={0.8}>
         <nav className="flex gap-2">
           <span>
-            <CustomLink href="/craft" ariaLabel="craft page">
+            <CustomLink href="#">
               Craft
             </CustomLink>
           </span>
           <span>
-            <CustomLink href="/writing" ariaLabel="writing page">
+            <CustomLink href="#">
               Writing
             </CustomLink>
           </span>
@@ -47,7 +47,7 @@ export default function Home() {
       </AnimateEnter>
       <AnimateEnter delay={1.2}>
         <CustomLink
-          href="/about"
+          href="#"
           className="mt-24 inline-block cursor-pointer font-mono text-xs text-secondary decoration-neutral-300 decoration-1 underline-offset-[2.5px] transition-all hover:underline dark:text-secondary-dark dark:decoration-[#505050]"
           hideUnderline
         >
