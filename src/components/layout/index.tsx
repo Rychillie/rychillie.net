@@ -6,4 +6,5 @@ export { default as Container } from './container';
 export { default as List } from './list';
 export { default as Providers } from './providers';
 export { default as Separator } from './separator';
+export { default as ShortcutKeys } from './shortcut-key';
 export { default as UnderDevelopment } from './under-development';
