@@ -1,13 +1,18 @@
+/* eslint-disable prefer-const */
 import { Heading, Text } from '@/components/elements';
-import { AnimateEnter, BackHome, UnderDevelopment } from '@/components/layout';
-import { Metadata } from 'next';
+import { AnimateEnter, BackHome, List, UnderDevelopment } from '@/components/layout';
+import { getBlogPosts } from '@/lib/content';
 
-export const metadata: Metadata = {
-  title: 'Writing',
-  description: 'Writing amazing things about code.'
-};
+export function generateMetadata() {
+  return {
+    title: 'Writing',
+    description: 'Writing amazing things about code.'
+  };
+}
 
 export default function Writing() {
+  let allWritings = getBlogPosts();
+
   return (
     <>
       <AnimateEnter>
@@ -19,9 +24,11 @@ export default function Writing() {
         </header>
       </AnimateEnter>
       <AnimateEnter delay={0.4}>
-        <section className="mb-8 mt-6 flex flex-col">
+        {allWritings.length > 0 ? (
+          <List items={allWritings} route="writing" />
+        ) : (
           <UnderDevelopment />
-        </section>
+        )}
       </AnimateEnter>
       <AnimateEnter delay={1}>
         <span className="mt-12 flex">
