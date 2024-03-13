@@ -42,6 +42,10 @@
     background: #d4d4d4;
   }
 
+  html {
+    min-width: 320px;
+  }  
+
   @media (prefers-color-scheme: dark) {
     ::-webkit-scrollbar-thumb {
       background: #404040;
@@ -49,6 +53,10 @@
 
     ::-webkit-scrollbar-thumb:hover {
       background: #525252;
+    }
+
+    html {
+      color-scheme: dark;
     }
   }
 

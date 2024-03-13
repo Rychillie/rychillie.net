@@ -25,12 +25,8 @@ export default function Home() {
       </AnimateEnter>
       <AnimateEnter delay={0.8}>
         <nav className="flex gap-2">
-          <span>
-            <CustomLink href="/craft">Craft</CustomLink>
-          </span>
-          <span>
-            <CustomLink href="/writing">Writing</CustomLink>
-          </span>
+          <CustomLink href="/craft">Craft</CustomLink>
+          <CustomLink href="/writing">Writing</CustomLink>
         </nav>
         <Separator className="my-12" />
       </AnimateEnter>
