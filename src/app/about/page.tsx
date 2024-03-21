@@ -3,7 +3,6 @@ import { Heading, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, Contact, Separator } from '@/components/layout';
 import ImageSection from '@/components/layout/image-section';
 import { getCarrer } from '@/lib/content';
-import { MetadataCarrer } from '@/lib/content/parse-frontmatter';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -12,14 +11,8 @@ export const metadata: Metadata = {
   description: 'Come get to know me a little more'
 };
 
-type Jobs = {
-  metadata: MetadataCarrer;
-  slug: string;
-  content: string;
-};
-
 export default function About() {
-  let allJobs = getCarrer() as Jobs[];
+  let allJobs = getCarrer();
 
   return (
     <>

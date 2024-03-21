@@ -2,7 +2,6 @@
 import { Heading, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, List, UnderDevelopment } from '@/components/layout';
 import { getBlogPosts } from '@/lib/content';
-import { MetadataWriting } from '@/lib/content/parse-frontmatter';
 
 export function generateMetadata() {
   return {
@@ -11,14 +10,8 @@ export function generateMetadata() {
   };
 }
 
-type Posts = {
-  metadata: MetadataWriting;
-  slug: string;
-  content: string;
-};
-
 export default function Writing() {
-  let allWritings = getBlogPosts() as Posts[];
+  let allWritings = getBlogPosts();
 
   return (
     <>
