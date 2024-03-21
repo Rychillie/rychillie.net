@@ -3,8 +3,8 @@
 import { Gallery } from '@/components/layout';
 import { useMediaQuery } from '@/lib/hooks';
 import Image from 'next/image';
-import landscape from '../../../public/images/landscape.png';
-import rychillie from '../../../public/images/rychillie.png';
+import landscape from '../../../public/assets/landscape.png';
+import rychillie from '../../../public/assets/rychillie.png';
 
 export default function ImageSection() {
   const { width } = useMediaQuery();
