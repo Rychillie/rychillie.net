@@ -92,7 +92,7 @@ export default function Post({ params }: Params) {
           dateTime={post.metadata.publishedAt}
           className="text-secondary dark:text-secondary-dark"
         >
-          {format(parseISO(post.metadata.publishedAt), 'MMMM dd yyyy')}
+          {format(parseISO(post.metadata.publishedAt), 'MMMM dd, yyyy')}
         </time>
         <CopyButton />
       </div>
