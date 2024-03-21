@@ -6,15 +6,10 @@ import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion';
 import localFont from 'next/font/local';
 import Image, { StaticImageData } from 'next/image';
 import { ReactNode, useEffect, useState } from 'react';
-import ipad from '../../../public/images/ipad.png';
-import landscape from '../../../public/images/landscape.png';
-import rychillie from '../../../public/images/rychillie.png';
-import zeno from '../../../public/images/zeno.png';
-
-const ticketingFont = localFont({
-  src: '../../../public/fonts/Ticketing.woff2',
-  display: 'swap'
-});
+import ipad from '../../../public/assets/ipad.png';
+import landscape from '../../../public/assets/landscape.png';
+import rychillie from '../../../public/assets/rychillie.png';
+import zeno from '../../../public/assets/zeno.png';
 
 type PhotoProps = {
   src: StaticImageData | string;
@@ -29,6 +24,11 @@ type PhotoProps = {
   flipDirection?: 'left' | 'right';
   children?: ReactNode;
 };
+
+const ticketingFont = localFont({
+  src: '../../../public/fonts/Ticketing.woff2',
+  display: 'swap'
+});
 
 function Photo({
   src,
