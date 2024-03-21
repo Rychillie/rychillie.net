@@ -44,7 +44,7 @@
 
   html {
     min-width: 320px;
-  }  
+  }
 
   @media (prefers-color-scheme: dark) {
     ::-webkit-scrollbar-thumb {
