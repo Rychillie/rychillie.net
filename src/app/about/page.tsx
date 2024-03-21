@@ -12,7 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
-  let allJobs = getCarrer();
+  let allJobs = getCarrer().sort((a, b) => {
+    const startA = new Date(a.metadata?.start).getFullYear();
+    const startB = new Date(b.metadata?.start).getFullYear();
+    return startB - startA;
+  });
 
   return (
     <>
@@ -55,7 +59,7 @@ export default function About() {
               dapibus nunc eu tincidunt vulputate.
             </Text>
 
-            <div className="w-full">
+            <div className="flex w-full flex-col gap-5">
               {allJobs &&
                 allJobs.map((job, index) => {
                   const start = new Date(job.metadata?.start).getFullYear();
@@ -74,15 +78,21 @@ export default function About() {
                         />
                       )}
                       <div className="flex w-full flex-col">
-                        <div className="flex flex-row items-center gap-2">
-                          <Text size="large" weight="medium" className="w-full">
+                        <div className="flex flex-1 flex-row items-center gap-2">
+                          <Text
+                            size="large"
+                            weight="medium"
+                            className="line-clamp-1 w-full flex-1 flex-row"
+                          >
                             {job.metadata?.job}
                           </Text>
-                          <Text size="xsmall" colour="secondary">
+                          <Text size="small" colour="secondary">
                             {duration}
                           </Text>
                         </div>
-                        <Text colour="secondary">{job.metadata?.company}</Text>
+                        <Text colour="secondary" className="line-clamp-1">
+                          {job.metadata?.company}
+                        </Text>
                       </div>
                     </div>
                   );
