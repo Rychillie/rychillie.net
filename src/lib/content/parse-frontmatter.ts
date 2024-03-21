@@ -1,9 +1,19 @@
-export type Metadata = {
+export type MetadataWriting = {
   title: string;
   publishedAt: string;
   summary: string;
   image?: string;
 };
+
+export type MetadataCarrer = {
+  job: string;
+  company: string;
+  start: string;
+  end: string;
+  image?: string;
+};
+
+export type Metadata = MetadataWriting | MetadataCarrer;
 
 export default function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;

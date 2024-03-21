@@ -1,14 +1,26 @@
+/* eslint-disable prefer-const */
 import { Heading, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, Contact, Separator } from '@/components/layout';
 import ImageSection from '@/components/layout/image-section';
+import { getCarrer } from '@/lib/content';
+import { MetadataCarrer } from '@/lib/content/parse-frontmatter';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'About',
   description: 'Come get to know me a little more'
 };
 
+type Jobs = {
+  metadata: MetadataCarrer;
+  slug: string;
+  content: string;
+};
+
 export default function About() {
+  let allJobs = getCarrer() as Jobs[];
+
   return (
     <>
       <AnimateEnter>
@@ -49,6 +61,40 @@ export default function About() {
               ultricies convallis, risus arcu pharetra ipsum, et hendrerit enim urna at libero. Ut
               dapibus nunc eu tincidunt vulputate.
             </Text>
+
+            <div className="w-full">
+              {allJobs &&
+                allJobs.map((job, index) => {
+                  const start = new Date(job.metadata?.start).getFullYear();
+                  const end = new Date(job.metadata?.end).getFullYear();
+                  const duration = start === end ? start : `${start} - ${end}`;
+
+                  return (
+                    <div key={index} className="flex w-full flex-row items-center gap-4">
+                      {job.metadata?.image && (
+                        <Image
+                          src={job.metadata?.image}
+                          alt={job.metadata?.company}
+                          className="aspect-square rounded-full"
+                          height={52}
+                          width={52}
+                        />
+                      )}
+                      <div className="flex w-full flex-col">
+                        <div className="flex flex-row items-center gap-2">
+                          <Text size="large" weight="medium" className="w-full">
+                            {job.metadata?.job}
+                          </Text>
+                          <Text size="xsmall" colour="secondary">
+                            {duration}
+                          </Text>
+                        </div>
+                        <Text colour="secondary">{job.metadata?.company}</Text>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </section>
         <Separator className="my-12" />

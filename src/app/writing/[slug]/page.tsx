@@ -2,6 +2,7 @@
 import { CustomLink, Heading, MDX } from '@/components/elements';
 import { CopyButton, Navigation, Separator } from '@/components/layout';
 import { getBlogPosts } from '@/lib/content';
+import { MetadataWriting } from '@/lib/content/parse-frontmatter';
 import '@/styles/prose.css';
 import { format, parseISO } from 'date-fns';
 import type { Metadata } from 'next';
@@ -23,7 +24,12 @@ export async function generateMetadata(params: any): Promise<Metadata | undefine
     return;
   }
 
-  let { title, publishedAt: publishedTime, summary: description, image } = post.metadata;
+  let {
+    title,
+    publishedAt: publishedTime,
+    summary: description,
+    image
+  } = post.metadata as MetadataWriting;
 
   let ogImage = image ? `https://rychillie.net${image}` : `https://rychillie.net/og?title=${title}`;
 
@@ -51,8 +57,14 @@ export async function generateMetadata(params: any): Promise<Metadata | undefine
   };
 }
 
+type Posts = {
+  metadata: MetadataWriting;
+  slug: string;
+  content: string;
+};
+
 export default function Post({ params }: Params) {
-  let allWritings = getBlogPosts();
+  let allWritings = getBlogPosts() as Posts[];
   let post = allWritings.find((post) => post.slug === params.slug);
 
   if (!post) {
