@@ -2,9 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: false,
-  experimental: {
-    useLightningcss: true
-  }
+  transpilePackages: ['next-mdx-remote']
 };
 
 export default nextConfig;

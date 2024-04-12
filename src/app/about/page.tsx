@@ -63,7 +63,10 @@ export default function About() {
               {allJobs &&
                 allJobs.map((job, index) => {
                   const start = new Date(job.metadata?.start).getFullYear();
-                  const end = new Date(job.metadata?.end).getFullYear();
+                  const end =
+                    job.metadata?.end === 'current'
+                      ? 'Current'
+                      : new Date(job.metadata?.end).getFullYear();
                   const duration = start === end ? start : `${start} - ${end}`;
 
                   return (
