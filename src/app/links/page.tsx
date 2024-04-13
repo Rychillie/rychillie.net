@@ -35,21 +35,16 @@ export default function Writing() {
         <Separator className="my-6" />
       </AnimateEnter>
       <AnimateEnter>
-        <div className="grid grid-cols-4 gap-2 sm:gap-3">
-          {[...Array(9)].map((_, index) => {
-            const isLarge = index === 2 || index === 5 || index === 8;
-            return (
-              <div
-                key={index}
-                className={c(
-                  'cursor-pointer rounded-md border border-green-300 bg-green-100/60 p-2 transition-all hover:bg-green-200/60 dark:border-green-700 dark:bg-green-900/60 dark:hover:bg-green-800/60 sm:p-4',
-                  isLarge ? 'col-span-2' : 'aspect-square'
-                )}
-              >
-                <Text className="text-green-900 dark:text-green-200">Teste</Text>
-              </div>
-            );
-          })}
+        <div className="grid auto-rows-[192px] grid-cols-2 gap-4 sm:grid-cols-3">
+          {[...Array(7)].map((_, i) => (
+            <div
+              key={i}
+              className={c(
+                'rounded-xl border-2 border-slate-400/10 row-span-1 bg-neutral-100 p-4 dark:bg-neutral-900',
+                i === 3 || i === 6 ? 'col-span-2' : ''
+              )}
+            ></div>
+          ))}
         </div>
       </AnimateEnter>
     </>
