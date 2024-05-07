@@ -2,14 +2,17 @@
 
 import { CustomLink, Heading, Text } from '@/components/elements';
 import { AnimateEnter, Contact, Separator } from '@/components/layout';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
+  const t = useTranslations('Index');
+
   return (
     <>
       <AnimateEnter delay={0.4}>
         <header>
-          <Heading>I&apos;m Rychillie</Heading>
-          <Text colour="secondary">Software Engineer</Text>
+          <Heading dangerouslySetInnerHTML={{ __html: t('title') }} />
+          <Text colour="secondary">{t('intro')}</Text>
         </header>
       </AnimateEnter>
       <AnimateEnter delay={0.6}>
