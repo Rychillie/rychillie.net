@@ -16,9 +16,10 @@ interface ListProps {
     content: string;
   }[];
   route: string;
+  locale?: string;
 }
 
-export default function List({ items, route }: ListProps) {
+export default function List({ items, route, locale }: ListProps) {
   const isCraftRoute = route === 'craft';
 
   return (
@@ -35,6 +36,7 @@ export default function List({ items, route }: ListProps) {
               <li key={metadata.title}>
                 <CustomLink
                   href={`/${route}/${slug}`}
+                  locale={locale}
                   hideUnderline
                   className="flex justify-between gap-2 p-1 hover:text-secondary dark:hover:text-secondary-dark"
                 >

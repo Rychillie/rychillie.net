@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Projects, experiments and things that I've crafted."
 };
 
-export default function Craft() {
+export default function Craft({ params: { locale } }: { params: { locale: string } }) {
   return (
     <>
       <AnimateEnter>
@@ -25,7 +25,7 @@ export default function Craft() {
       </AnimateEnter>
       <AnimateEnter delay={1}>
         <span className="mt-12 flex">
-          <BackHome />
+          <BackHome locale={locale} />
         </span>
       </AnimateEnter>
     </>

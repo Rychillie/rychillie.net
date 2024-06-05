@@ -2,9 +2,16 @@
 
 import { CustomLink } from '@/components/elements';
 
-export default function BackHome() {
+export default function BackHome({ locale }: { locale: string }) {
   return (
-    <CustomLink href="/" ariaLabel="Back to home page" arrowIcon hideUnderline className="p-1">
+    <CustomLink
+      href="/"
+      locale={locale}
+      ariaLabel="Back to home page"
+      arrowIcon
+      hideUnderline
+      className="p-1"
+    >
       Back
     </CustomLink>
   );

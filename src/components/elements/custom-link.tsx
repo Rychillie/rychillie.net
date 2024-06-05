@@ -11,6 +11,7 @@ export interface CustomLinkProps {
   arrowIcon?: boolean;
   hideUnderline?: boolean;
   className?: string;
+  locale?: string;
 }
 
 export default function CustomLink({
@@ -19,7 +20,8 @@ export default function CustomLink({
   ariaLabel,
   arrowIcon,
   hideUnderline,
-  className
+  className,
+  locale
 }: CustomLinkProps) {
   const isInternalLink = href.startsWith('/');
 
@@ -34,7 +36,12 @@ export default function CustomLink({
 
   if (isInternalLink) {
     return (
-      <Link href={href} className={c(classes)} aria-label={ariaLabel}>
+      <Link
+        href={locale === 'pt-BR' ? `/pt-BR${href}` : `/en${href}`}
+        className={c(classes)}
+        aria-label={ariaLabel}
+        locale={locale}
+      >
         {arrowIcon && (
           <Icon
             name="arrow-top-left"

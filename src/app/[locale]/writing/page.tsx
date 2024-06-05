@@ -10,7 +10,7 @@ export function generateMetadata() {
   };
 }
 
-export default function Writing() {
+export default function Writing({ params: { locale } }: { params: { locale: string } }) {
   let allWritings = getBlogPosts();
 
   return (
@@ -25,14 +25,14 @@ export default function Writing() {
       </AnimateEnter>
       <AnimateEnter delay={0.4}>
         {allWritings.length > 0 ? (
-          <List items={allWritings} route="writing" />
+          <List locale={locale} items={allWritings} route="writing" />
         ) : (
           <UnderDevelopment />
         )}
       </AnimateEnter>
       <AnimateEnter delay={1}>
         <span className="mt-12 flex">
-          <BackHome />
+          <BackHome locale={locale} />
         </span>
       </AnimateEnter>
     </>

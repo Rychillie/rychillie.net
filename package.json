@@ -20,6 +20,7 @@
     "framer-motion": "^11.0.12",
     "geist": "^1.2.2",
     "next": "^15.0.0-rc.0",
+    "next-intl": "^3.14.1",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
     "react": "^19.0.0-rc-1df34bdf62-20240605",

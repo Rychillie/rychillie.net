@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Come get to know me a little more'
 };
 
-export default function About() {
+export default function About({ params: { locale } }: { params: { locale: string } }) {
   let allJobs = getCarrer().sort((a, b) => {
     const startA = new Date(a.metadata?.start).getFullYear();
     const startB = new Date(b.metadata?.start).getFullYear();
@@ -110,7 +110,7 @@ export default function About() {
       </AnimateEnter>
       <AnimateEnter delay={1.2}>
         <span className="mt-24 flex">
-          <BackHome />
+          <BackHome locale={locale} />
         </span>
       </AnimateEnter>
     </>

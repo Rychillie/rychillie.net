@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Personal + professional updates.'
 };
 
-export default function Now() {
+export default function Now({ params: { locale } }: { params: { locale: string } }) {
   return (
     <>
       <AnimateEnter>
@@ -40,7 +40,7 @@ export default function Now() {
       </AnimateEnter>
       <AnimateEnter delay={1}>
         <div className="mt-12 flex">
-          <BackHome />
+          <BackHome locale={locale} />
         </div>
       </AnimateEnter>
     </>

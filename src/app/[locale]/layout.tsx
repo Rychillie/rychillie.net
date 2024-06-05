@@ -1,11 +1,13 @@
 import { Providers } from '@/components/layout';
 import '@/styles/globals.css';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+// import { Analytics } from '@vercel/analytics/react';
+// import { SpeedInsights } from '@vercel/speed-insights/next';
 import c from 'clsx';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -48,25 +50,32 @@ export const metadata: Metadata = {
 
 export interface RootLayoutProps {
   children: ReactNode;
+  params: { locale: string };
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={c('scroll-smooth antialiased', GeistMono.variable, GeistSans.variable)}
       suppressHydrationWarning
     >
       <body className="overflow-x-hidden text-sm text-primary dark:bg-primary dark:text-primary-dark md:text-base lg:text-base">
-        <Providers>
-          <main className="container mx-auto min-h-full max-w-3xl pb-page-bottom-mobile pt-page-top-mobile md:pb-page-bottom md:pt-page-top">
-            {children}
-          </main>
-        </Providers>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
+            <main className="container mx-auto min-h-full max-w-3xl pb-page-bottom-mobile pt-page-top-mobile md:pb-page-bottom md:pt-page-top">
+              {children}
+            </main>
+          </Providers>
+        </NextIntlClientProvider>
       </body>
 
-      <Analytics />
-      <SpeedInsights />
+      {/* <Analytics />
+      <SpeedInsights /> */}
     </html>
   );
 }

@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 interface Params {
-  params: { slug: string };
+  params: { slug: string; locale: string };
 }
 
 export async function generateStaticParams() {
@@ -20,6 +20,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(params: any): Promise<Metadata | undefined> {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
+
   if (!post) {
     return;
   }
@@ -63,9 +64,9 @@ type Posts = {
   content: string;
 };
 
-export default function Post({ params }: Params) {
+export default function Post({ params: { locale, slug } }: Params) {
   let allWritings = getBlogPosts() as Posts[];
-  let post = allWritings.find((post) => post.slug === params.slug);
+  let post = allWritings.find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
@@ -77,6 +78,7 @@ export default function Post({ params }: Params) {
         <span>
           <CustomLink
             href="/writing"
+            locale={locale}
             ariaLabel="Back to writing page"
             arrowIcon
             hideUnderline
@@ -99,7 +101,7 @@ export default function Post({ params }: Params) {
       <Separator className="my-8" />
       <MDX source={post.content} />
       <Separator className="my-8" />
-      <Navigation allItems={allWritings} currentItem={post} route="writing" />
+      <Navigation locale={locale} allItems={allWritings} currentItem={post} route="writing" />
     </>
   );
 }
