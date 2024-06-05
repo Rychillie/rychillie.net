@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: false,
   transpilePackages: ['next-mdx-remote'],
   experimental: {
-    ppr: 'incremental',
+    ppr: true,
     reactCompiler: true,
     after: true
   }
