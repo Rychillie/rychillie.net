@@ -1,10 +1,12 @@
 /* eslint-disable prefer-const */
-import { Heading, Text } from '@/components/elements';
+import { Heading, MDX, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, Contact, Separator } from '@/components/layout';
 import ImageSection from '@/components/layout/image-section';
-import { getCarrer } from '@/lib/content';
+import { getCarrer, getPages } from '@/lib/content';
 import { Metadata } from 'next';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -12,6 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default function About({ params: { locale } }: { params: { locale: string } }) {
+  const t = useTranslations('About');
+  const page = getPages(locale, 'about');
+
   let allJobs = getCarrer(locale).sort((a, b) => {
     const startA = new Date(a.metadata?.start).getFullYear();
     const startB = new Date(b.metadata?.start).getFullYear();
@@ -22,50 +27,34 @@ export default function About({ params: { locale } }: { params: { locale: string
     <>
       <AnimateEnter>
         <header>
-          <Heading>About me</Heading>
-          <Text colour="secondary">A little more about who I am.</Text>
+          <Heading>{t('title')}</Heading>
+          <Text colour="secondary">{t('description')}</Text>
         </header>
       </AnimateEnter>
-      <ImageSection />
+      <ImageSection locale={locale} />
       <AnimateEnter delay={0.6}>
         <section className="flex flex-col gap-4 py-6">
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, augue vitae
-            ultricies convallis, risus arcu pharetra ipsum, et hendrerit enim urna at libero. Ut
-            dapibus nunc eu tincidunt vulputate.
-          </Text>
-          <Text>
-            Maecenas tincidunt nisl tortor, quis molestie mauris faucibus quis. Curabitur tempor nec
-            leo eu volutpat. Quisque eu tortor eu nisi facilisis ornare ac nec quam. Aenean ligula
-            enim, luctus eget sapien id, euismod volutpat nisi.
-          </Text>
-          <Text>
-            Proin tristique rutrum dolor, in elementum neque tristique quis. Donec eu magna et justo
-            laoreet ornare id sed tellus. Morbi sit amet tortor pretium, pulvinar metus cursus,
-            euismod massa. Phasellus gravida est a dolor hendrerit, quis interdum lacus congue.
-          </Text>
+          <Suspense fallback={null}>
+            <MDX source={page?.content} />
+          </Suspense>
         </section>
       </AnimateEnter>
       <AnimateEnter delay={0.8}>
         <section className="flex flex-col gap-6 py-6">
           <div>
-            <Heading as="h2">Career</Heading>
-            <Text colour="secondary">10+ years of professional development experience.</Text>
+            <Heading as="h2">{t('career')}</Heading>
+            <Text colour="secondary">{t('intro')}</Text>
           </div>
-          <div className="flex flex-col gap-6">
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, augue vitae
-              ultricies convallis, risus arcu pharetra ipsum, et hendrerit enim urna at libero. Ut
-              dapibus nunc eu tincidunt vulputate.
-            </Text>
+          <div className="flex flex-col gap-8">
+            <Text>{t('about')}</Text>
 
-            <div className="flex w-full flex-col gap-5">
+            <div className="flex w-full flex-col gap-6">
               {allJobs &&
                 allJobs.map((job, index) => {
                   const start = new Date(job.metadata?.start).getFullYear();
                   const end =
                     job.metadata?.end === 'current'
-                      ? 'Current'
+                      ? t('current')
                       : new Date(job.metadata?.end).getFullYear();
                   const duration = start === end ? start : `${start} - ${end}`;
 
@@ -106,7 +95,7 @@ export default function About({ params: { locale } }: { params: { locale: string
         <Separator className="my-12" />
       </AnimateEnter>
       <AnimateEnter delay={1}>
-        <Contact />
+        <Contact locale={locale} />
       </AnimateEnter>
       <AnimateEnter delay={1.2}>
         <span className="mt-24 flex">

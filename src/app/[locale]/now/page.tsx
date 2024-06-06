@@ -1,6 +1,9 @@
-import { Heading, Text } from '@/components/elements';
+import { Heading, MDX, Text } from '@/components/elements';
 import { AnimateEnter, BackHome } from '@/components/layout';
+import { getPages } from '@/lib/content';
 import { Metadata } from 'next';
+import { useTranslations } from 'next-intl';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Now',
@@ -8,34 +11,26 @@ export const metadata: Metadata = {
 };
 
 export default function Now({ params: { locale } }: { params: { locale: string } }) {
+  const t = useTranslations('Now');
+  const page = getPages(locale, 'now');
+
   return (
     <>
       <AnimateEnter>
         <header>
-          <Heading>Now</Heading>
+          <Heading>{t('title')}</Heading>
         </header>
       </AnimateEnter>
       <AnimateEnter delay={0.4}>
         <section className="mb-8 mt-6 flex flex-col gap-6">
-          <Text>
-            Dedicated to improving skills by creating websites that stand out for their performance,
-            accessibility and incredible designs.
-          </Text>
-          <Text>
-            I study the Swift language and also develop hybrid applications using React-Native and
-            Expo. I constantly seek to expand my knowledge, exploring new technological and creative
-            possibilities to offer innovative solutions to my projects.
-          </Text>
-          <Text>
-            Furthermore, I find pleasure in combining functionality and aesthetics, providing
-            exceptional user experiences. I&apos;m always looking for the perfect balance between
-            performance, affordability and visual beauty.
-          </Text>
+          <Suspense fallback={null}>
+            <MDX source={page?.content} />
+          </Suspense>
         </section>
       </AnimateEnter>
       <AnimateEnter delay={0.8}>
         <Text colour="secondary" size="small">
-          Last updated <time dateTime="2023-12-11">December 11, 2023</time>
+          {t('updated')} <time dateTime="2023-12-11">{page?.metadata.updated}</time>
         </Text>
       </AnimateEnter>
       <AnimateEnter delay={1}>

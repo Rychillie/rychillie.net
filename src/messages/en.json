@@ -17,5 +17,17 @@
   "Craft": {
     "title": "Craft",
     "description": "Projects, experiments and things that I&apos;ve crafted."
+  },
+  "About": {
+    "title": "About",
+    "description": "A little more about who I am.",
+    "current": "current",
+    "career": "Career",
+    "intro": "10+ years of professional development experience.",
+    "about": "Frontend development specialist with experience in startups and large corporations, where I developed and led significant technological projects. Currently, I serve as a Frontend Developer at Wipro, focused on driving innovative technological solutions."
+  },
+  "Now": {
+    "title": "Now",
+    "updated": "Last updated"
   }
 }

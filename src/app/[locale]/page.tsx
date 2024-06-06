@@ -39,7 +39,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
         <Separator className="my-12" />
       </AnimateEnter>
       <AnimateEnter delay={1}>
-        <Contact />
+        <Contact locale={locale} />
       </AnimateEnter>
       <AnimateEnter delay={1.2}>
         <CustomLink
