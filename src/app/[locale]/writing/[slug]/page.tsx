@@ -12,14 +12,16 @@ interface Params {
   params: { slug: string; locale: string };
 }
 
-export async function generateStaticParams() {
-  return getBlogPosts().map(({ slug }) => ({
+export async function generateStaticParams({ params: { locale } }: Params) {
+  return getBlogPosts(locale).map(({ slug }) => ({
     params: { slug }
   }));
 }
 
-export async function generateMetadata(params: any): Promise<Metadata | undefined> {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export async function generateMetadata({
+  params: { slug, locale }
+}: Params): Promise<Metadata | undefined> {
+  let post = getBlogPosts(locale).find((post) => post.slug === slug);
 
   if (!post) {
     return;
@@ -64,8 +66,8 @@ type Posts = {
   content: string;
 };
 
-export default function Post({ params: { locale, slug } }: Params) {
-  let allWritings = getBlogPosts() as Posts[];
+export default function Post({ params: { slug, locale } }: Params) {
+  let allWritings = getBlogPosts(locale) as Posts[];
   let post = allWritings.find((post) => post.slug === slug);
 
   if (!post) {

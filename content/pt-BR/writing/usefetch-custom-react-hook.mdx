@@ -1,0 +1,139 @@
+---
+title: useFetch a custom React Hook
+summary: A custom React Hook to fetch data from an API
+publishedAt: '2024-03-21'
+---
+
+Making HTTP requests in React applications is a common task, but it's not always an easy one. With numerous options available, such as Axios and Fetch, choosing the right approach can be challenging. To streamline this process, I present the custom React Hook `useFetch`, an elegant solution for handling HTTP requests in a simple and reusable manner in your projects.
+
+## State Management:
+
+To begin with our Hook, we create states to control data loading and potential errors. Using React's `useState`, we define the states `data`, `isLoading`, and `error`.
+
+```tsx
+const [data, setData] = useState();
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState<Error | undefined>();
+```
+
+## The data State:
+
+The `data` state stores the data received from the API. It's initialized as `undefined` and updated when the request succeeds. You can also choose to initialize `data` with a default value if desired. Furthermore, you can define the expected data type for `data`.
+
+## The isLoading State:
+
+`isLoading` is a boolean indicating whether the request is in progress. It's `false` by default and switches to `true` during the request, returning to `false` when it's completed.
+
+## The error State:
+
+The `error` state stores potential errors that may occur during the request. It's initialized as `undefined` and updated with an `Error` object in case of an error.
+
+## The fetchData Function:
+
+The `fetchData` function is responsible for making the request to the API. It's an asynchronous function that uses JavaScript's `fetch` method. In the `try` block, we make the request and parse the response into a JSON object. Any errors are caught in the `catch` block and stored in the `error` state. Finally, the `isLoading` state is updated to false in the `finally` block.
+
+```tsx
+async function fetchData() {
+  setIsLoading(true);
+  try {
+    const response = await fetch(url).then((res) => res.json());
+    setData(response);
+  } catch (error) {
+    setError(error as Error);
+  } finally {
+    setIsLoading(false);
+  }
+}
+```
+
+## Using useEffect:
+
+To perform the request to the API, we use React's `useEffect`. We pass the `fetchData` function as the first argument and the `url` dependency as the second argument. This ensures that the request is made whenever the `url` changes.
+
+```tsx
+useEffect(() => {
+  fetchData();
+}, [url]);
+```
+
+## The refetch Function:
+
+The `refetch` function is a way to redo the request to the API manually. It's called when we want to update the data, such as when the user clicks on a reload button.
+
+```tsx
+function refetch() {
+  setIsLoading(true);
+  fetchData();
+}
+```
+
+## Complete Code
+
+Here's the complete code for our custom React Hook `useFetch`:
+
+```tsx
+import { useEffect, useState } from 'react';
+
+export default function useFetch(url: string) {
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | undefined>();
+
+  async function fetchData() {
+    setIsLoading(true);
+    try {
+      const response = await fetch(url).then((res) => res.json());
+      setData(response);
+    } catch (error) {
+      setError(error as Error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [url]);
+
+  function refetch() {
+    setIsLoading(true);
+    fetchData();
+  }
+
+  return { data, isLoading, error, refetch };
+}
+```
+
+## Using the Hook
+
+Now that the Hook is ready, you can use it in any component of your application to make requests to the API. Simply import the Hook and call the `useFetch` function passing the API `url` as an argument.
+
+```tsx
+import useFetch from './useFetch';
+
+export default function List() {
+  const { data, isLoading, error, refetch } = useFetch("YOUR_API_URL");
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  return (
+    // Render your list with the received data
+  );
+}
+```
+
+## Hook's Return
+
+Finally, we return an object containing the `data`, `isLoading`, and `error` states, along with the `refetch` function. This allows us to use this Hook in different parts of the application to make requests in a simple and reusable way.
+
+## Conclusion
+
+The custom React Hook `useFetch` simplifies the process of making HTTP requests in React applications. With a clear structure and well-defined functionalities, it enables more efficient and organized development. Try out `useFetch` in your next project and see how it can make your life much easier!
+
+I hope this article has been helpful to you. If you have any questions or suggestions, please don't hesitate to reach out. Thank you for reading this far and until next time! 🚀

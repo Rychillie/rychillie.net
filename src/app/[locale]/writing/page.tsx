@@ -12,7 +12,7 @@ export function generateMetadata() {
 }
 
 export default function Writing({ params: { locale } }: { params: { locale: string } }) {
-  let allWritings = getBlogPosts();
+  let allWritings = getBlogPosts(locale);
   const t = useTranslations('Writing');
 
   return (

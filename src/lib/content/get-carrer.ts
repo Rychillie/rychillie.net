@@ -8,6 +8,7 @@ type Jobs = {
   content: string;
 };
 
-export default function getCarrer() {
-  return getMDXData(path.join(process.cwd(), 'content/carrer')) as Jobs[];
+export default function getCarrer(locale: string) {
+  const lang = locale === 'pt-BR' ? 'pt-BR' : 'en';
+  return getMDXData(path.join(process.cwd(), `content/${lang}/carrer`)) as Jobs[];
 }

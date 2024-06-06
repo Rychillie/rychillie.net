@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function About({ params: { locale } }: { params: { locale: string } }) {
-  let allJobs = getCarrer().sort((a, b) => {
+  let allJobs = getCarrer(locale).sort((a, b) => {
     const startA = new Date(a.metadata?.start).getFullYear();
     const startB = new Date(b.metadata?.start).getFullYear();
     return startB - startA;
