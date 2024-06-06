@@ -7,6 +7,7 @@ import '@/styles/prose.css';
 import { format, parseISO } from 'date-fns';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 interface Params {
   params: { slug: string; locale: string };
@@ -89,19 +90,54 @@ export default function Post({ params: { slug, locale } }: Params) {
             Writing
           </CustomLink>
         </span>
-        <Heading>{post.metadata.title}</Heading>
+        <Suspense fallback={<h1 className="h-8 animate-pulse bg-primary dark:bg-primary-dark" />}>
+          <Heading>{post.metadata.title}</Heading>
+        </Suspense>
       </header>
       <div className="mb-3 flex justify-between text-sm">
-        <time
-          dateTime={post.metadata.publishedAt}
-          className="text-secondary dark:text-secondary-dark"
+        <Suspense
+          fallback={
+            <time className="h-4 w-20 animate-pulse rounded-full bg-secondary dark:bg-secondary-dark" />
+          }
         >
-          {format(parseISO(post.metadata.publishedAt), 'MMMM dd, yyyy')}
-        </time>
-        <CopyButton />
+          <time
+            dateTime={post.metadata.publishedAt}
+            className="text-secondary dark:text-secondary-dark"
+          >
+            {format(parseISO(post.metadata.publishedAt), 'MMMM dd, yyyy')}
+          </time>
+          <CopyButton />
+        </Suspense>
       </div>
       <Separator className="my-8" />
-      <MDX source={post.content} />
+      <Suspense
+        fallback={
+          <article className="flex h-[72vh] w-full items-center justify-center">
+            <svg
+              className="size-5 animate-spin text-secondary dark:text-secondary-dark"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </article>
+        }
+      >
+        <MDX source={post.content} />
+      </Suspense>
       <Separator className="my-8" />
       <Navigation locale={locale} allItems={allWritings} currentItem={post} route="writing" />
     </>
