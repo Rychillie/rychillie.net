@@ -12,7 +12,7 @@ export default function BackHome({ locale }: { locale: string }) {
       hideUnderline
       className="p-1"
     >
-      Back
+      {locale === 'pt-BR' ? 'Voltar' : 'Back'}
     </CustomLink>
   );
 }

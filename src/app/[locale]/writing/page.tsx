@@ -2,6 +2,7 @@
 import { Heading, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, List, UnderDevelopment } from '@/components/layout';
 import { getBlogPosts } from '@/lib/content';
+import { useTranslations } from 'next-intl';
 
 export function generateMetadata() {
   return {
@@ -12,14 +13,15 @@ export function generateMetadata() {
 
 export default function Writing({ params: { locale } }: { params: { locale: string } }) {
   let allWritings = getBlogPosts();
+  const t = useTranslations('Writing');
 
   return (
     <>
       <AnimateEnter>
         <header>
-          <Heading className="mb-3">Writing</Heading>
+          <Heading className="mb-3">{t('title')}</Heading>
           <Text className="mb-10 flex" colour="secondary">
-            Infrequent thoughts on technology, design and things in between.
+            {t('description')}
           </Text>
         </header>
       </AnimateEnter>
@@ -27,7 +29,7 @@ export default function Writing({ params: { locale } }: { params: { locale: stri
         {allWritings.length > 0 ? (
           <List locale={locale} items={allWritings} route="writing" />
         ) : (
-          <UnderDevelopment />
+          <UnderDevelopment locale={locale} />
         )}
       </AnimateEnter>
       <AnimateEnter delay={1}>

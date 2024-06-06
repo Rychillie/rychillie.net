@@ -9,5 +9,13 @@
     "craft": "Criações",
     "writing": "Artigos",
     "about": "Sobre"
+  },
+  "Writing": {
+    "title": "Artigos",
+    "description": "Pensamentos esporádicos sobre tecnologia, design e coisas no meio."
+  },
+  "Craft": {
+    "title": "Criações",
+    "description": "Projetos, experimentos e coisas que eu criei."
   }
 }

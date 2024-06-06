@@ -9,5 +9,13 @@
     "craft": "Craft",
     "writing": "Writing",
     "about": "About"
+  },
+  "Writing": {
+    "title": "Writing",
+    "description": "Infrequent thoughts on technology, design and things in between."
+  },
+  "Craft": {
+    "title": "Craft",
+    "description": "Projects, experiments and things that I&apos;ve crafted."
   }
 }

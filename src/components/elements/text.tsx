@@ -10,6 +10,7 @@ interface TextProps
   colour?: 'primary' | 'secondary';
   size?: 'xsmall' | 'small' | 'normal' | 'large';
   ariaHidden?: boolean;
+  dangerouslySetInnerHTML?: { __html: string };
 }
 
 export default function Text({
@@ -19,7 +20,8 @@ export default function Text({
   size = 'normal',
   className,
   children,
-  ariaHidden
+  ariaHidden,
+  dangerouslySetInnerHTML
 }: TextProps) {
   const weights = c(
     weight === 'regular' && 'font-normal',
@@ -40,7 +42,11 @@ export default function Text({
   );
 
   return (
-    <Tag className={c(weights, colours, sizes, className)} aria-hidden={ariaHidden}>
+    <Tag
+      aria-hidden={ariaHidden}
+      className={c(weights, colours, sizes, className)}
+      dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+    >
       {children}
     </Tag>
   );
