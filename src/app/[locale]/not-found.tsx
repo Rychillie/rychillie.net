@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function NotFound() {
+export default function NotFound({ params: { locale } }: { params: { locale: string } }) {
   return (
     <>
       <h1 className="mb-6 text-lg font-medium">404 &mdash; Not Found</h1>
@@ -30,7 +30,7 @@ export default function NotFound() {
         <p>Either way, apologies for the inconvenience.</p>
       </section>
       <span className="mt-6">
-        <BackHome />
+        <BackHome locale={locale} />
       </span>
     </>
   );

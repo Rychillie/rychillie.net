@@ -3,7 +3,7 @@
 import { CustomLink, Heading } from '@/components/elements';
 import c from 'clsx';
 
-export default function Contact() {
+export default function Contact({ locale }: { locale: string }) {
   const contactLinks = [
     {
       label: '@rychillie',
@@ -25,7 +25,7 @@ export default function Contact() {
   return (
     <>
       <Heading as="h2" className="mb-6">
-        Connect
+        {locale === 'pt-BR' ? 'Conecte-se' : 'Connect'}
       </Heading>
       <ul className="flex">
         {contactLinks.map(({ label, href, ariaLabel }, index) => (

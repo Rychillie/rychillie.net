@@ -1,7 +1,7 @@
 import { getBlogPosts } from '@/lib/content';
 
 export default async function sitemap() {
-  const blogs = getBlogPosts().map((post) => ({
+  const blogs = getBlogPosts('en').map((post) => ({
     url: `https://rychillie.io/writing/${post.slug}`,
     lastModified: post.metadata.publishedAt
   }));

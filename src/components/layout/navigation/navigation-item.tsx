@@ -17,11 +17,13 @@ type NavigationItemProps = {
   item: Item;
   route: string;
   direction: 'next' | 'previous';
+  locale?: string;
 };
 
-export default function NavigationItem({ item, route, direction }: NavigationItemProps) {
+export default function NavigationItem({ item, route, direction, locale }: NavigationItemProps) {
   return (
     <CustomLink
+      locale={locale}
       href={`/${route}/${item.slug}`}
       hideUnderline
       className={c(

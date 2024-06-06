@@ -8,6 +8,7 @@ type Posts = {
   content: string;
 };
 
-export default function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'content/writing')) as Posts[];
+export default function getBlogPosts(locale: string) {
+  const lang = locale === 'pt-BR' ? 'pt-BR' : 'en';
+  return getMDXData(path.join(process.cwd(), `content/${lang}/writing`)) as Posts[];
 }

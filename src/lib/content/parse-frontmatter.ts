@@ -13,7 +13,14 @@ export type MetadataCarrer = {
   image?: string;
 };
 
-export type Metadata = MetadataWriting | MetadataCarrer;
+export type MetadataPage = {
+  title: string;
+  description?: string;
+  updated?: string;
+  image?: string;
+};
+
+export type Metadata = MetadataWriting | MetadataCarrer | MetadataPage;
 
 export default function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;

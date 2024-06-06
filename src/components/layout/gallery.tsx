@@ -137,14 +137,14 @@ function Photo({
   );
 }
 
-export default function Gallery() {
+export default function Gallery({ locale }: { locale: string }) {
   return (
     <>
       <div className="relative flex h-[268px] gap-4">
         <Photo
           src={rychillie}
           meta="2022-05-05"
-          alt="Just me"
+          alt={locale === 'pt-BR' ? 'Apenas eu' : 'Just me'}
           width={324}
           height={239}
           rotate={-6}
@@ -154,7 +154,7 @@ export default function Gallery() {
         <Photo
           src={ipad}
           meta="2022-06-24"
-          alt="My old iPad"
+          alt={locale === 'pt-BR' ? 'Meu antigo iPad' : 'My old iPad'}
           width={230}
           height={250}
           rotate={6.3}
@@ -165,7 +165,7 @@ export default function Gallery() {
         <Photo
           src={zeno}
           meta="2022-11-19"
-          alt="Me with Zeno Rocha"
+          alt={locale === 'pt-BR' ? 'Eu com Zeno Rocha' : 'Me with Zeno Rocha'}
           width={280}
           height={235}
           rotate={-5.4}
@@ -175,7 +175,7 @@ export default function Gallery() {
         <Photo
           src={landscape}
           meta="2019-09-01"
-          alt="The street I grew up on"
+          alt={locale === 'pt-BR' ? 'A rua onde cresci' : 'The street I grew up on'}
           width={220}
           height={260}
           rotate={7.6}

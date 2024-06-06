@@ -1,0 +1,33 @@
+{
+  "Index": {
+    "hello": "Eu sou Rychillie",
+    "carrer": "Engenheiro de Software",
+    "intro": "Criando conteúdo e compartilhando conhecimento pela internet. Amante de design e tecnologia colaborando com projetos de Código Aberto.",
+    "read": "Leia mais em ",
+    "now": "agora",
+    "page": ".",
+    "craft": "Criações",
+    "writing": "Artigos",
+    "about": "Sobre"
+  },
+  "Writing": {
+    "title": "Artigos",
+    "description": "Pensamentos esporádicos sobre tecnologia, design e coisas no meio."
+  },
+  "Craft": {
+    "title": "Criações",
+    "description": "Projetos, experimentos e coisas que eu criei."
+  },
+  "About": {
+    "title": "Sobre",
+    "description": "Um pouco mais sobre quem eu sou.",
+    "current": "atual",
+    "career": "Carreira",
+    "intro": "Mais de 10 anos de experiência profissional em desenvolvimento.",
+    "about": "Especialista em desenvolvimento Frontend, com passagem por startups e grandes corporações, onde desenvolvi e liderei projetos tecnológicos significativos. Atualmente, exerço a função de Desenvolvedor Frontend na Wipro, focado em impulsionar soluções tecnológicas inovadoras."
+  },
+  "Now": {
+    "title": "Agora",
+    "updated": "Última atualização"
+  }
+}
