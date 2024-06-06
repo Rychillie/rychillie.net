@@ -1,66 +1,66 @@
 ---
-title: Forging My Personal Space
-summary: Discover how I crafted my personal web space, where passion for development and innovation converge
+title: Forjando Meu Espaço Pessoal
+summary: Descubra como criei meu espaço web pessoal, onde paixão pelo desenvolvimento e inovação convergem
 publishedAt: '2024-01-05'
 ---
 
-I have a passion for developing 'Portfolios' and exploring innovations in personal websites. I believe that creating a custom platform is the most effective way to showcase skills. This isn't my first venture into creating a personal online presence. Honestly, I don't want my personal website to become just another lost entity in the vastness of the internet. I want it to be an authentic representation of who I am and my skills. That's why I chose to develop this complex platform, which, as I write this article, takes the form of a multilingual blog with a completely customized Content Management System (CMS).
+Tenho paixão por desenvolver 'Portfólios' e explorar inovações em sites pessoais. Acredito que criar uma plataforma personalizada é a maneira mais eficaz de apresentar habilidades. Esta não é minha primeira incursão na criação de uma presença online pessoal. Honestamente, não quero que meu site pessoal se torne apenas mais uma entidade perdida na vastidão da internet. Quero que seja uma representação autêntica de quem sou e das minhas habilidades. É por isso que escolhi desenvolver esta plataforma complexa, que, enquanto escrevo este artigo, assume a forma de um blog multilíngue com um Sistema de Gerenciamento de Conteúdo (CMS) completamente personalizado.
 
-## Fullstack Development
+## Desenvolvimento Fullstack
 
-In terms of Fullstack, I'll start by explaining the tools I use to make my project comprehensive, covering both the BackEnd and FrontEnd. For the construction of the BackEnd and FrontEnd, my primary choice is NextJS, in version 14. NextJS is essentially a ReactJS Framework that excels in Server-Side Rendering. In other words, it allows content rendering on the server. The embedded presence of NodeJS in NextJS enables its use as a Fullstack solution.
+Em termos de Fullstack, começarei explicando as ferramentas que uso para tornar meu projeto abrangente, cobrindo tanto o BackEnd quanto o FrontEnd. Para a construção do BackEnd e FrontEnd, minha escolha principal é NextJS, na versão 14. NextJS é essencialmente um Framework ReactJS que se destaca em Renderização no Lado do Servidor. Em outras palavras, permite a renderização de conteúdo no servidor. A presença incorporada de NodeJS no NextJS permite seu uso como uma solução Fullstack.
 
-To further simplify development, I turn to [Prisma ORM](https://www.prisma.io/). This framework plays a crucial role in mapping, typing, and requesting data from my database, which is essentially [Planetscale](https://planetscale.com/). This combination of technologies not only provides a practical development experience but also establishes a robust foundation for the efficient implementation of features in my project.
+Para simplificar ainda mais o desenvolvimento, recorro ao [Prisma ORM](https://www.prisma.io/). Este framework desempenha um papel crucial no mapeamento, tipificação e solicitação de dados do meu banco de dados, que é essencialmente [Planetscale](https://planetscale.com/). Essa combinação de tecnologias não apenas proporciona uma experiência de desenvolvimento prática, mas também estabelece uma base robusta para a implementação eficiente de recursos em meu projeto.
 
-## Exploring NextJS 14 and Server-Components
+## Explorando NextJS 14 e Server-Components
 
-By adopting version 14 of NextJS, I open the doors to using Server-Components, an innovative feature that provides the ability to make requests directly on the server without exposing sensitive information to the user. These components not only provide an additional layer of security but also present a more efficient approach to delivering static content, resulting in a faster and more responsive experience for users.
+Ao adotar a versão 14 do NextJS, abro as portas para usar Server-Components, um recurso inovador que proporciona a capacidade de fazer solicitações diretamente no servidor sem expor informações sensíveis ao usuário. Esses componentes não apenas fornecem uma camada adicional de segurança, mas também apresentam uma abordagem mais eficiente para a entrega de conteúdo estático, resultando em uma experiência mais rápida e responsiva para os usuários.
 
-## Prisma and Planetscale
+## Prisma e Planetscale
 
-By incorporating Prisma as my Object-Relational Mapping (ORM) and Planetscale as my primary database, I establish a solid infrastructure for the efficient and secure management of data in my project. Prisma simplifies interaction with the database, providing a powerful abstraction layer for data mapping and typed queries, enhancing productivity and code clarity.
+Incorporando o Prisma como meu Mapeamento Objeto-Relacional (ORM) e Planetscale como meu banco de dados principal, estabeleço uma infraestrutura sólida para o gerenciamento eficiente e seguro de dados em meu projeto. Prisma simplifica a interação com o banco de dados, fornecendo uma poderosa camada de abstração para mapeamento de dados e consultas tipificadas, melhorando a produtividade e a clareza do código.
 
-It's worth noting that Planetscale, in addition to offering exceptional scalability and performance, features a notable free plan that deserves special attention. This free option not only enables initial projects but also stands out as a robust solution for growing initiatives. Its distributed infrastructure efficiently handles considerable volumes of data, ensuring a reliable experience for end-users. By considering Planetscale's free plan, I not only optimize costs but also secure a solid foundation for the future expansion of my project.
+Vale ressaltar que o Planetscale, além de oferecer escalabilidade e desempenho excepcionais, conta com um plano gratuito notável que merece atenção especial. Essa opção gratuita não apenas possibilita projetos iniciais, mas também se destaca como uma solução robusta para iniciativas em crescimento. Sua infraestrutura distribuída lida de maneira eficiente com volumes consideráveis de dados, garantindo uma experiência confiável para os usuários finais. Ao considerar o plano gratuito do Planetscale, não apenas otimizo custos, mas também asseguro uma base sólida para a expansão futura do meu projeto.
 
-## Exploring FullStack with Next.js Server-Actions
+## Explorando FullStack com Next.js Server-Actions
 
-Let's now delve into the practical functioning of Server-Actions in Next.js, incorporating Prisma to make database requests. The updated example highlights the simplicity and effectiveness of this approach, as demonstrated in the following code snippet:
+Vamos agora nos aprofundar no funcionamento prático das Server-Actions no Next.js, incorporando Prisma para fazer solicitações ao banco de dados. O exemplo atualizado destaca a simplicidade e eficácia desta abordagem, conforme demonstrado no seguinte trecho de código:
 
 ```tsx title="@/lib/actions/articles.tsx" caption="Example of Server-Action with Prisma"
 'use server';
 
 import prisma from '@/lib/prisma';
 
-// Starting with the creation of an asynchronous function
+// Começando com a criação de uma função assíncrona
 export async function getPost({ slug }) {
-  // We receive only the SLUG of the post as a parameter
+  // Nós recebemos apenas o SLUG da postagem como parâmetro
   return await prisma.posts.findMany({ where: { slug } });
-  // We use the SLUG to make a database query with Prisma
+  // Nós usamos o SLUG para fazer uma consulta ao banco de dados com Prisma
 }
 ```
 
-In this example, by incorporating the _**"use server"**_ marker, we explicitly indicate that this is a Server-Action. The _**getPost**_ function uses Prisma to make a database query, filtering posts based on the provided _**slug**_. This implementation exemplifies the elegance of the integration between Server-Actions and Prisma in Next.js, providing an efficient and direct way to handle server-side operations.
+Neste exemplo, ao incorporar o marcador _**"use server"**_, indicamos explicitamente que se trata de uma Server-Action. A função _**getPost**_ usa Prisma para fazer uma consulta ao banco de dados, filtrando posts com base no _**slug**_ fornecido. Essa implementação exemplifica a elegância da integração entre Server-Actions e Prisma no Next.js, proporcionando uma maneira eficiente e direta de lidar com operações do lado do servidor.
 
-## Custom CMS with TIPTAP
+## CMS Personalizado com TIPTAP
 
-My journey in developing this platform also includes creating a fully customized Content Management System(CMS), comparable to a "personal WordPress." The driving force behind this unique experience lies in the powerful text editor, TIPTAP.
+Minha jornada no desenvolvimento desta plataforma também inclui a criação de um Sistema de Gerenciamento de Conteúdo (CMS) totalmente personalizado, comparável a um "WordPress pessoal". A força motriz por trás dessa experiência única está no poderoso editor de texto, TIPTAP.
 
-By adopting [TIPTAP](https://tiptap.dev/), a library for building WYSIWYG editors, I significantly enhanced the editing and content creation experience. Customizing content delivery with Next.js, Prisma, and other technologies not only simplified the administration of my content but also offered an intuitive interface. This allows me to create and edit articles easily, anytime and anywhere.
+Ao adotar o [TIPTAP](https://tiptap.dev/), uma biblioteca para construção de editores WYSIWYG, aprimorei significativamente a experiência de edição e criação de conteúdo. Personalizar a entrega de conteúdo com Next.js, Prisma e outras tecnologias não apenas simplificou a administração do meu conteúdo, mas também ofereceu uma interface intuitiva. Isso me permite criar e editar artigos facilmente, a qualquer hora e em qualquer lugar.
 
-With the flexibility of TIPTAP, I explored advanced text formatting features, providing users with a unique and user-friendly reading experience. This initiative reinforces the idea that, by combining powerful technologies, we can create custom solutions that meet the specific needs of the project.
+Com a flexibilidade do TIPTAP, explorei recursos avançados de formatação de texto, proporcionando aos usuários uma experiência de leitura única e amigável. Essa iniciativa reforça a ideia de que, combinando tecnologias poderosas, podemos criar soluções personalizadas que atendem às necessidades específicas do projeto.
 
-## Creating Elements with Tailwind CSS, CVA, and Radix UI
+## Criando Elementos com Tailwind CSS, CVA e Radix UI
 
-In addition to the custom CMS, the customization of the design of my website is an essential piece of what I've built. Using the utility-first approach of Tailwind CSS, I efficiently styled each component, maintaining clean and organized code.
+Além do CMS personalizado, a personalização do design do meu site é uma peça essencial do que construí. Usando a abordagem de primeiro utilitário do Tailwind CSS, estilizei cada componente de forma eficiente, mantendo o código limpo e organizado.
 
-Integration with the [**Class Variance Authority**(or CVA)](https://cva.style/) for Tailwind further facilitated the management of state and style logic, providing a smoother development experience, thus allowing the creation of a mini-design system. Additionally, the incorporation of [Radix UI](https://www.radix-ui.com/) offered a collection of accessible and ready-to-use components, enriching the interface of my website with interactive and responsive elements.
+A integração com a [**Class Variance Authority** (ou CVA)](https://cva.style/) para Tailwind facilitou ainda mais a gestão da lógica de estado e estilo, proporcionando uma experiência de desenvolvimento mais suave, permitindo assim a criação de um mini-sistema de design. Além disso, a incorporação do [Radix UI](https://www.radix-ui.com/) ofereceu uma coleção de componentes acessíveis e prontos para uso, enriquecendo a interface do meu site com elementos interativos e responsivos.
 
-This synergy between Tailwind CSS, CVA, and Radix UI not only simplifies the customization process but also elevates the design of my website to a new level, reflecting my aesthetic vision in a unique and striking way.
+Essa sinergia entre Tailwind CSS, CVA e Radix UI não apenas simplifica o processo de personalização, mas também eleva o design do meu site para um novo nível, refletindo minha visão estética de uma maneira única e marcante.
 
-## Heading Towards the Future: Challenges and Opportunities
+## Caminhando Para o Futuro: Desafios e Oportunidades
 
-This initial point in the journey of building and customizing my website represents just the beginning of an exciting trajectory. While I've achieved significant advancements in implementing the custom CMS, visual customization with Tailwind CSS, CVA, and Radix UI, I acknowledge that there's much more to come. This project is not just a test of my capability but also of the platform itself, as well as a careful preparation for future engaging content.
+Este ponto inicial na jornada de construir e personalizar meu site representa apenas o começo de uma trajetória empolgante. Embora tenha alcançado avanços significativos na implementação do CMS personalizado, na personalização visual com Tailwind CSS, CVA e Radix UI, reconheço que há muito mais por vir. Este projeto não é apenas um teste da minha capacidade, mas também da própria plataforma, bem como uma preparação cuidadosa para conteúdo envolvente futuro.
 
-As I move forward, I envision the incorporation of courses, tutorials, and closer interaction with the audience. This is only the prologue to a broader story where technology and creativity intertwine to create a dynamic and educational platform. The challenges I've faced so far represent opportunities for continuous learning and improvement.
+À medida que avanço, vislumbro a incorporação de cursos, tutoriais e uma interação mais próxima com o público. Este é apenas o prólogo de uma história mais ampla onde tecnologia e criatividade se entrelaçam para criar uma plataforma dinâmica e educacional. Os desafios que enfrentei até agora representam oportunidades para aprendizado e melhoria contínuos.
 
-I invite you to follow this ever-evolving journey. This website is not just a digital space; it's an invitation to explore, learn, and grow together. I'm excited about what the future holds and look forward to sharing more meaningful content and interactions. Together, let's shape this digital space into a vibrant and collaborative community. Thank you for being part of this thrilling journey!
+Convido você a seguir essa jornada em constante evolução. Este site não é apenas um espaço digital; é um convite para explorar, aprender e crescer juntos. Estou animado com o que o futuro reserva e ansioso para compartilhar mais conteúdo e interações significativas. Juntos, vamos moldar este espaço digital em uma comunidade vibrante e colaborativa. Obrigado por fazer parte desta empolgante jornada!

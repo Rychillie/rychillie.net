@@ -3,15 +3,19 @@ import { Heading, MDX, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, Contact, Separator } from '@/components/layout';
 import ImageSection from '@/components/layout/image-section';
 import { getCarrer, getPages } from '@/lib/content';
-import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { Suspense } from 'react';
 
-export const metadata: Metadata = {
-  title: 'About',
-  description: 'Come get to know me a little more'
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'About' });
+
+  return {
+    title: t('title'),
+    description: t('description')
+  };
+}
 
 export default function About({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('About');
@@ -34,7 +38,7 @@ export default function About({ params: { locale } }: { params: { locale: string
       <ImageSection locale={locale} />
       <AnimateEnter delay={0.6}>
         <section className="flex flex-col gap-4 py-6">
-          <Suspense fallback={null}>
+          <Suspense>
             <MDX source={page?.content} hasText />
           </Suspense>
         </section>

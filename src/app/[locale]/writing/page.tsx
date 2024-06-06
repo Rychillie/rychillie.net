@@ -1,13 +1,17 @@
 /* eslint-disable prefer-const */
+
 import { Heading, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, List, UnderDevelopment } from '@/components/layout';
 import { getBlogPosts } from '@/lib/content';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export function generateMetadata() {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'Writing' });
+
   return {
-    title: 'Writing',
-    description: 'Writing amazing things about code.'
+    title: t('title'),
+    description: t('description')
   };
 }
 

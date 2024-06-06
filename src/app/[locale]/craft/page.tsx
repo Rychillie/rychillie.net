@@ -1,12 +1,16 @@
 import { Heading, Text } from '@/components/elements';
 import { AnimateEnter, BackHome, UnderDevelopment } from '@/components/layout';
-import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Craft',
-  description: "Projects, experiments and things that I've crafted."
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'Craft' });
+
+  return {
+    title: t('title'),
+    description: t('description')
+  };
+}
 
 export default function Craft({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Craft');

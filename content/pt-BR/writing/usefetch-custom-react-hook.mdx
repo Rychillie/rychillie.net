@@ -1,14 +1,14 @@
 ---
-title: useFetch a custom React Hook
-summary: A custom React Hook to fetch data from an API
+title: useFetch um React Hook personalizado
+summary: Um React Hook personalizado para buscar dados de uma API
 publishedAt: '2024-03-21'
 ---
 
-Making HTTP requests in React applications is a common task, but it's not always an easy one. With numerous options available, such as Axios and Fetch, choosing the right approach can be challenging. To streamline this process, I present the custom React Hook `useFetch`, an elegant solution for handling HTTP requests in a simple and reusable manner in your projects.
+Fazer requisições HTTP em aplicações React é uma tarefa comum, mas nem sempre é fácil. Com várias opções disponíveis, como Axios e Fetch, escolher a abordagem certa pode ser um desafio. Para simplificar esse processo, apresento o Hook personalizado do React `useFetch`, uma solução elegante para lidar com requisições HTTP de maneira simples e reutilizável em seus projetos.
 
-## State Management:
+## Gerenciamento de Estado:
 
-To begin with our Hook, we create states to control data loading and potential errors. Using React's `useState`, we define the states `data`, `isLoading`, and `error`.
+Para começar com nosso Hook, criamos estados para controlar o carregamento de dados e possíveis erros. Usando o `useState` do React, definimos os estados `data`, `isLoading` e `error`.
 
 ```tsx
 const [data, setData] = useState();
@@ -16,21 +16,21 @@ const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState<Error | undefined>();
 ```
 
-## The data State:
+## Estado de dados:
 
-The `data` state stores the data received from the API. It's initialized as `undefined` and updated when the request succeeds. You can also choose to initialize `data` with a default value if desired. Furthermore, you can define the expected data type for `data`.
+O estado `data` armazena os dados recebidos da API. É inicializado como `undefined` e atualizado quando a solicitação é bem-sucedida. Você também pode optar por inicializar `data` com um valor padrão, se desejar. Além disso, você pode definir o tipo de dados esperado para `data`.
 
-## The isLoading State:
+## Estado de isLoading:
 
-`isLoading` is a boolean indicating whether the request is in progress. It's `false` by default and switches to `true` during the request, returning to `false` when it's completed.
+`isLoading` é um booleano que indica se a solicitação está em andamento. Ele é `false` por padrão e muda para `true` durante a solicitação, retornando para `false` quando ela é concluída.
 
-## The error State:
+## Estado de erro:
 
-The `error` state stores potential errors that may occur during the request. It's initialized as `undefined` and updated with an `Error` object in case of an error.
+O estado `error` armazena possíveis erros que podem ocorrer durante a solicitação. É inicializado como `undefined` e atualizado com um objeto `Error` em caso de erro.
 
-## The fetchData Function:
+## Função fetchData:
 
-The `fetchData` function is responsible for making the request to the API. It's an asynchronous function that uses JavaScript's `fetch` method. In the `try` block, we make the request and parse the response into a JSON object. Any errors are caught in the `catch` block and stored in the `error` state. Finally, the `isLoading` state is updated to false in the `finally` block.
+A função `fetchData` é responsável por realizar a solicitação à API. É uma função assíncrona que utiliza o método `fetch` do JavaScript. No bloco `try`, realizamos a solicitação e parseamos a resposta em um objeto JSON. Quaisquer erros são capturados no bloco `catch` e armazenados no estado `error`. Finalmente, o estado `isLoading` é atualizado para `false` no bloco `finally`.
 
 ```tsx
 async function fetchData() {
@@ -46,9 +46,9 @@ async function fetchData() {
 }
 ```
 
-## Using useEffect:
+## Usando useEffect:
 
-To perform the request to the API, we use React's `useEffect`. We pass the `fetchData` function as the first argument and the `url` dependency as the second argument. This ensures that the request is made whenever the `url` changes.
+Para realizar a solicitação à API, utilizamos o `useEffect` do React. Passamos a função `fetchData` como primeiro argumento e a dependência `url` como segundo argumento. Isso garante que a solicitação seja feita sempre que o `url` mudar.
 
 ```tsx
 useEffect(() => {
@@ -56,9 +56,9 @@ useEffect(() => {
 }, [url]);
 ```
 
-## The refetch Function:
+## A função refetch:
 
-The `refetch` function is a way to redo the request to the API manually. It's called when we want to update the data, such as when the user clicks on a reload button.
+A função `refetch` é uma maneira de refazer manualmente a solicitação à API. Ela é chamada quando queremos atualizar os dados, como por exemplo, quando o usuário clica em um botão de recarregar.
 
 ```tsx
 function refetch() {
@@ -67,9 +67,9 @@ function refetch() {
 }
 ```
 
-## Complete Code
+## Código Completo
 
-Here's the complete code for our custom React Hook `useFetch`:
+Aqui está o código completo para o nosso Hook personalizado do React `useFetch`:
 
 ```tsx
 import { useEffect, useState } from 'react';
@@ -104,9 +104,9 @@ export default function useFetch(url: string) {
 }
 ```
 
-## Using the Hook
+## Usando o Hook
 
-Now that the Hook is ready, you can use it in any component of your application to make requests to the API. Simply import the Hook and call the `useFetch` function passing the API `url` as an argument.
+Agora que o Hook está pronto, você pode usá-lo em qualquer componente da sua aplicação para fazer solicitações à API. Basta importar o Hook e chamar a função `useFetch`, passando a `url` da API como argumento.
 
 ```tsx
 import useFetch from './useFetch';
@@ -123,17 +123,17 @@ export default function List() {
   }
 
   return (
-    // Render your list with the received data
+    // Renderiza sua lista com os dados recebidos
   );
 }
 ```
 
-## Hook's Return
+## Retorno do Hook
 
-Finally, we return an object containing the `data`, `isLoading`, and `error` states, along with the `refetch` function. This allows us to use this Hook in different parts of the application to make requests in a simple and reusable way.
+Por fim, retornamos um objeto contendo os estados `data`, `isLoading` e `error`, juntamente com a função `refetch`. Isso nos permite usar este Hook em diferentes partes da aplicação para fazer solicitações de maneira simples e reutilizável.
 
-## Conclusion
+## Conclusão
 
-The custom React Hook `useFetch` simplifies the process of making HTTP requests in React applications. With a clear structure and well-defined functionalities, it enables more efficient and organized development. Try out `useFetch` in your next project and see how it can make your life much easier!
+O Hook personalizado do React `useFetch` simplifica o processo de fazer requisições HTTP em aplicações React. Com uma estrutura clara e funcionalidades bem definidas, ele possibilita um desenvolvimento mais eficiente e organizado. Experimente o `useFetch` em seu próximo projeto e veja como ele pode facilitar sua vida!
 
-I hope this article has been helpful to you. If you have any questions or suggestions, please don't hesitate to reach out. Thank you for reading this far and until next time! 🚀
+Espero que este artigo tenha sido útil para você. Se tiver qualquer dúvida ou sugestão, não hesite em entrar em contato. Obrigado por ler até aqui e até a próxima! 🚀

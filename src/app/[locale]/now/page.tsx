@@ -1,14 +1,18 @@
 import { Heading, MDX, Text } from '@/components/elements';
 import { AnimateEnter, BackHome } from '@/components/layout';
 import { getPages } from '@/lib/content';
-import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
-export const metadata: Metadata = {
-  title: 'Now',
-  description: 'Personal + professional updates.'
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'Now' });
+
+  return {
+    title: t('title'),
+    description: t('description')
+  };
+}
 
 export default function Now({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Now');
@@ -23,7 +27,7 @@ export default function Now({ params: { locale } }: { params: { locale: string }
       </AnimateEnter>
       <AnimateEnter delay={0.4}>
         <section className="mb-8 mt-6 flex flex-col gap-6">
-          <Suspense fallback={null}>
+          <Suspense>
             <MDX source={page?.content} hasText />
           </Suspense>
         </section>
