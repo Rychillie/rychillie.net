@@ -24,7 +24,7 @@ export default function Now({ params: { locale } }: { params: { locale: string }
       <AnimateEnter delay={0.4}>
         <section className="mb-8 mt-6 flex flex-col gap-6">
           <Suspense fallback={null}>
-            <MDX source={page?.content} />
+            <MDX source={page?.content} hasText />
           </Suspense>
         </section>
       </AnimateEnter>

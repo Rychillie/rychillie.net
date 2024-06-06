@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 'use client';
 
-import { CustomLink } from '@/components/elements';
+import { CustomLink, Text } from '@/components/elements';
 import c from 'clsx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
@@ -53,14 +53,25 @@ const components = {
   Table
 };
 
-export default function MDX(props: any) {
+const ExtraText = {
+  p: (props: any) => <Text as="p" {...props} />
+};
+
+export default function MDX(props: any, hasText?: boolean) {
   return (
     <article
       className={c(
         'prose prose-sm not-pre md:prose-base prose-headings:font-medium prose-headings:text-primary prose-h2:text-base dark:prose-headings:text-primary-dark'
       )}
     >
-      <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />
+      <MDXRemote
+        {...props}
+        components={{
+          ...components,
+          ...(props.components || {}),
+          ...(hasText ? ExtraText : {})
+        }}
+      />
     </article>
   );
 }

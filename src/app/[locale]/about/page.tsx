@@ -35,7 +35,7 @@ export default function About({ params: { locale } }: { params: { locale: string
       <AnimateEnter delay={0.6}>
         <section className="flex flex-col gap-4 py-6">
           <Suspense fallback={null}>
-            <MDX source={page?.content} />
+            <MDX source={page?.content} hasText />
           </Suspense>
         </section>
       </AnimateEnter>
