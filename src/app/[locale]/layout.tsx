@@ -78,7 +78,7 @@ export default async function RootLayout({ children, params: { locale } }: RootL
       <Analytics />
       <SpeedInsights />
 
-      <Script async src="https://cdn.seline.so/seline.js" />
+      <Script async src="https://cdn.seline.so/seline.js" data-token="8f6f370ac841745" />
     </html>
   );
 }
