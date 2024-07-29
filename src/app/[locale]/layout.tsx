@@ -8,6 +8,7 @@ import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -76,6 +77,8 @@ export default async function RootLayout({ children, params: { locale } }: RootL
 
       <Analytics />
       <SpeedInsights />
+
+      <Script async src="https://cdn.seline.so/seline.js" />
     </html>
   );
 }
