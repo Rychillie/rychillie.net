@@ -22,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       className={c('scroll-smooth antialiased', GeistMono.variable, GeistSans.variable)}
       suppressHydrationWarning
     >
-      <body className="w-screen h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
+      <body className="relative w-screen h-screen lg:items-center lg:justify-center lg:flex bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
         <Providers>{children}</Providers>
       </body>
     </html>
