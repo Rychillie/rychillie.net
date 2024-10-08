@@ -31,7 +31,7 @@ export default function Home() {
         <div className="flex-col justify-start items-start gap-6 flex">
           <div className="flex-col justify-start items-start gap-4 flex">
             <div className="text-center lg:text-left flex-col justify-start items-start gap-1 flex">
-              <h2 className="text-neutral-950 font-medium dark:text-neutral-50">
+              <h2 className="text-neutral-950 font-medium dark:text-neutral-50 w-full">
                 I'm sharing content with over 20k others.
               </h2>
 
@@ -60,8 +60,8 @@ export default function Home() {
                 </button>
               </div>
 
-              <div className="w-full justify-start items-center gap-3 inline-flex">
-                <div className="justify-start items-start flex">
+              <div className="w-full justify-center lg:justify-start items-center gap-3 inline-flex">
+                <div className="flex">
                   {[...Array(3)].map((_, index) => (
                     <img
                       key={index}
