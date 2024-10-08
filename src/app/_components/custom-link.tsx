@@ -24,7 +24,7 @@ export default function CustomLink({
   const isInternalLink = href.startsWith('/');
 
   const classes = c(
-    'transition-all dark:hover:decoration-neutral-600 hover:decoration-neutral-400',
+    'transition-all dark:hover:decoration-neutral-600 hover:decoration-neutral-400 hover:opacity-80',
     children === 'Back' && 'hover:text-neutral-400 dark:hover:text-neutral-600',
     !hideUnderline &&
       'underline decoration-neutral-300 decoration-1 underline-offset-2 dark:decoration-neutral-400 dark:decoration-neutral-600 hover:underline-offset-4',
