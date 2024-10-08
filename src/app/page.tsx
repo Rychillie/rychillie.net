@@ -6,9 +6,9 @@ export default function Home() {
     <div className="lg:max-w-4xl lg:mx-auto w-full flex flex-col lg:grid lg:grid-cols-2">
       <HeaderImage />
 
-      <main className="max-w-md mx-auto w-full p-4 flex flex-col gap-12">
+      <main className="max-w-md mx-auto w-full p-4 flex flex-col gap-10">
         <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             <Image
               src="/assets/rychillie.png"
               alt="Rychillie"
@@ -17,11 +17,14 @@ export default function Home() {
               className="hidden lg:flex size-10 rounded-full mix-blend-luminosity"
             />
             <h1 className="text-center lg:text-left font-medium text-neutral-600 dark:text-neutral-400">
-              <span className="text-black dark:text-white">
+              <em className="text-black dark:text-white font-bold">
                 Hello — I'm Rychillie, a Software Engineer based in the Brazil.
-              </span>{' '}
+              </em>{' '}
               Design and tech lover, creating content and sharing knowledge over the internet. Find
-              out a little more <CustomLink href="#">about me.</CustomLink>
+              out a little more{' '}
+              <CustomLink href="#" className="text-neutral-800 dark:text-neutral-200">
+                about me.
+              </CustomLink>
             </h1>
           </div>
 
@@ -37,11 +40,26 @@ export default function Home() {
 
               <p className="text-sm leading-tight text-neutral-600 dark:text-neutral-400">
                 Subscribe below, and join me on{' '}
-                <span className="text-blue-700 dark:text-blue-300">Youtube</span>,{' '}
-                <span className="text-blue-700 dark:text-blue-300">LinkedIn</span>,{' '}
-                <span className="text-blue-700 dark:text-blue-300">Github</span>,{' '}
-                <span className="text-blue-700 dark:text-blue-300">Threads</span> and{' '}
-                <span className="text-blue-700 dark:text-blue-300">Instagram</span> to follow along!
+                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                  Youtube
+                </CustomLink>
+                ,{' '}
+                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                  LinkedIn
+                </CustomLink>
+                ,{' '}
+                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                  Github
+                </CustomLink>
+                ,{' '}
+                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                  Threads
+                </CustomLink>{' '}
+                and{' '}
+                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                  Instagram
+                </CustomLink>{' '}
+                to follow along!
               </p>
             </div>
 
