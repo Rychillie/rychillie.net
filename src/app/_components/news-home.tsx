@@ -1,6 +1,7 @@
 'use client';
 
 import { CustomLink, Icon } from '@/app/_components';
+import { formatCount } from '@/lib';
 import Image from 'next/image';
 
 type DescriptionItem =
@@ -8,6 +9,14 @@ type DescriptionItem =
   | { type: 'space' }
   | { type: 'link'; content: { text: string; url: string } }
   | { type: 'comma' };
+
+const numberSubscribers = 3200;
+
+const someSubscribers = [
+  { name: 'Igor', image: '/assets/kinark.jpg' },
+  { name: 'Biro Biro Biro', image: '/assets/birobirobiro.jpg' },
+  { name: 'Daniel Lima', image: '/assets/daniellima.jpg' }
+];
 
 const description: DescriptionItem[] = [
   { type: 'text', text: 'Subscribe below, and join me on' },
@@ -26,11 +35,13 @@ const description: DescriptionItem[] = [
 ];
 
 export default function NewsHome() {
+  const formattedSubscribers = formatCount(numberSubscribers);
+
   return (
     <div className="flex-col justify-start items-start gap-4 flex">
       <div className="text-center lg:text-left flex-col justify-start items-start gap-1 flex">
         <h2 className="text-neutral-950 font-medium dark:text-neutral-50 w-full">
-          I'm sharing content with over 20k others.
+          I'm sharing content with over {formattedSubscribers} others.
         </h2>
 
         <p className="text-sm leading-tight text-neutral-600 dark:text-neutral-400">
@@ -80,21 +91,21 @@ export default function NewsHome() {
 
         <div className="w-full justify-center lg:justify-start items-center gap-3 inline-flex">
           <div className="flex">
-            {[...Array(3)].map((_, index) => (
+            {someSubscribers.map((item, index) => (
               <Image
                 width={22}
                 height={22}
                 key={index}
                 loading="lazy"
-                alt="placeholder image"
-                src="https://via.placeholder.com/22x22"
+                alt={item.name}
+                src={item.image}
                 className="size-[22px] -ml-2 first:m-0 rounded-full border-2 border-neutral-50 dark:border-neutral-950 hover:z-10 hover:scale-125 transition-all cursor-pointer"
               />
             ))}
           </div>
 
           <span className="text-neutral-600 dark:text-neutral-400 text-xs font-medium">
-            20k+ people subscribed
+            {formattedSubscribers}+ people subscribed
           </span>
         </div>
       </div>
