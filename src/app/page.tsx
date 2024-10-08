@@ -40,23 +40,23 @@ export default function Home() {
 
               <p className="text-sm leading-tight text-neutral-600 dark:text-neutral-400">
                 Subscribe below, and join me on{' '}
-                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                <CustomLink href="#" hideUnderline className="text-blue-600 dark:text-blue-400">
                   Youtube
                 </CustomLink>
                 ,{' '}
-                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                <CustomLink href="#" hideUnderline className="text-blue-600 dark:text-blue-400">
                   LinkedIn
                 </CustomLink>
                 ,{' '}
-                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                <CustomLink href="#" hideUnderline className="text-blue-600 dark:text-blue-400">
                   Github
                 </CustomLink>
                 ,{' '}
-                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                <CustomLink href="#" hideUnderline className="text-blue-600 dark:text-blue-400">
                   Threads
                 </CustomLink>{' '}
                 and{' '}
-                <CustomLink href="#" hideUnderline className="text-blue-700 dark:text-blue-300">
+                <CustomLink href="#" hideUnderline className="text-blue-600 dark:text-blue-400">
                   Instagram
                 </CustomLink>{' '}
                 to follow along!
@@ -70,7 +70,10 @@ export default function Home() {
                   placeholder="Enter your email"
                 />
 
-                <button className="size-10 bg-neutral-200 rounded-3xl border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-800 justify-center items-center gap-2.5 flex">
+                <button
+                  aria-label="subscribe"
+                  className="size-10 bg-neutral-200 rounded-3xl border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-800 justify-center items-center gap-2.5 flex"
+                >
                   <Icon
                     name="arrow-right"
                     className="size-6 relative text-neutral-600 dark:text-neutral-400"
@@ -81,10 +84,14 @@ export default function Home() {
               <div className="w-full justify-center lg:justify-start items-center gap-3 inline-flex">
                 <div className="flex">
                   {[...Array(3)].map((_, index) => (
-                    <img
+                    <Image
+                      width={22}
+                      height={22}
                       key={index}
-                      className="size-[22px] -ml-2 first:m-0 rounded-full border-2 border-neutral-50 dark:border-neutral-950 hover:z-10 hover:scale-125 transition-all cursor-pointer"
+                      loading="lazy"
+                      alt="placeholder image"
                       src="https://via.placeholder.com/22x22"
+                      className="size-[22px] -ml-2 first:m-0 rounded-full border-2 border-neutral-50 dark:border-neutral-950 hover:z-10 hover:scale-125 transition-all cursor-pointer"
                     />
                   ))}
                 </div>
