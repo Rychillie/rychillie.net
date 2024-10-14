@@ -1,3 +1,4 @@
+export { default as BackTo } from './back-to';
 export { default as CustomLink } from './custom-link';
 export { default as Footer } from './footer';
 export { default as HeaderImage } from './header-image';

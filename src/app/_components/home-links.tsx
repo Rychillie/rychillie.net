@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Icon from './icon';
 
 const links = [
-  { title: 'Writing', href: '#' },
+  { title: 'Writing', href: '/writing' },
   { title: 'Projects', href: '#' },
   { title: 'Diary', href: '#' }
 ];
