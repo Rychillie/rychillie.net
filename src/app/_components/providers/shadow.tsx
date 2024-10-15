@@ -1,14 +1,13 @@
-import { LinearBlur } from 'progressive-blur';
 import type { ReactNode } from 'react';
 
-interface BlurProps {
+interface ShadowProps {
   children: ReactNode;
 }
 
-export default function Blur({ children }: BlurProps) {
+export default function Shadow({ children }: ShadowProps) {
   const zIndex = 9999;
   const position = 'fixed';
-  const height = 32;
+  const height = 64;
   const insetx = {
     left: 0,
     right: 0
@@ -16,8 +15,8 @@ export default function Blur({ children }: BlurProps) {
 
   return (
     <>
-      <LinearBlur
-        aria-disabled
+      <div
+        className="bg-gradient-to-b from-neutral-50 dark:from-neutral-950 to-neutral-50/0 dark:to-neutral-950/0"
         style={{
           top: 0,
           height,
@@ -29,9 +28,8 @@ export default function Blur({ children }: BlurProps) {
 
       {children}
 
-      <LinearBlur
-        aria-disabled
-        side="bottom"
+      <div
+        className="bg-gradient-to-t from-neutral-50 dark:from-neutral-950 to-neutral-50/0 dark:to-neutral-950/0"
         style={{
           bottom: 0,
           height,

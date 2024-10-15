@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import Blur from './blur';
+import Shadow from './shadow';
 import Theme from './theme';
 
 interface ProvidersProps {
@@ -9,7 +9,7 @@ interface ProvidersProps {
 export default function Providers({ children }: ProvidersProps) {
   return (
     <Theme>
-      <Blur>{children}</Blur>
+      <Shadow>{children}</Shadow>
     </Theme>
   );
 }
