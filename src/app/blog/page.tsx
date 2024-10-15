@@ -46,7 +46,7 @@ export default function Paget() {
                       .map((writing) => (
                         <Link
                           key={writing.slug}
-                          href={`/writing/${writing.slug}`}
+                          href={`/blog/${writing.slug}`}
                           className={c(
                             'flex flex-row items-center justify-between py-3 border-t border-neutral-200 dark:border-neutral-800 sm:first:border-t-0 group-last/list:border-b group/item transition-all gap-2'
                           )}
