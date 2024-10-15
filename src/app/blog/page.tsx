@@ -3,6 +3,13 @@ import { getBlogPosts } from '@/lib/content';
 import c from 'clsx';
 import Link from 'next/link';
 
+export function generateMetadata() {
+  return {
+    title: 'Writing',
+    description: 'Infrequent thoughts on technology, design and things in between.'
+  };
+}
+
 export default function Paget() {
   let allWritings = getBlogPosts('en');
 

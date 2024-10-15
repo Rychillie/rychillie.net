@@ -4,6 +4,7 @@ import { getBlogPosts } from '@/lib/content';
 import type { MetadataWriting } from '@/lib/content/parse-frontmatter';
 import '@/styles/prose.css';
 import { format, parseISO } from 'date-fns';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export type Params = {
@@ -15,6 +16,40 @@ export type Post = {
   slug: string;
   content: string;
 };
+
+export async function generateMetadata({
+  params: { slug }
+}: Params): Promise<Metadata | undefined> {
+  let allWritings = getBlogPosts('en') as Post[];
+  let post = allWritings.find((post) => post.slug === slug);
+
+  if (!post) {
+    return;
+  }
+
+  let {
+    title,
+    publishedAt: publishedTime,
+    summary: description
+  } = post.metadata as MetadataWriting;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime,
+      url: `https://rychillie.net/blog/${post.slug}`
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description
+    }
+  };
+}
 
 export default function Page({ params: { slug } }: Params) {
   let allWritings = getBlogPosts('en') as Post[];
