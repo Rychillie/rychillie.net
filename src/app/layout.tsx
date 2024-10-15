@@ -48,7 +48,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className="scroll-smooth antialiased" suppressHydrationWarning>
-      <body className="relative w-screen min-h-screen lg:items-center lg:justify-center lg:flex bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
+      <body className="overflow-x-hidden relative w-screen min-h-screen lg:items-center lg:justify-center lg:flex bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
         <Providers>{children}</Providers>
       </body>
     </html>

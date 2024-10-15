@@ -122,7 +122,10 @@ function Photo({
             }}
           >
             <Halo strength={50} className="flex items-center">
-              <span className="absolute size-[500px] rotate-[-20deg] bg-[url('/assets/photopaper.png')] bg-[length:280px] bg-repeat" />
+              <span
+                style={{ backgroundImage: `url(${process.env.URL}/assets/Photopaper.png)` }}
+                className="absolute size-[500px] rotate-[-20deg] bg-[length:280px] bg-repeat"
+              />
               <div className="z-[1] px-6">
                 <div className="flex flex-col gap-1 font-mono uppercase">
                   <p className={c(ticketingFont.className, 'text-sm text-secondary')}>{alt}</p>

@@ -30,7 +30,7 @@ export default function ImageSection() {
               alt="The street I grew up on"
               width={220}
               height={260}
-              className="pointer-events-none absolute inset-0 left-[55%] w-56 rotate-6 rounded-2xl bg-neutral-500 object-cover shadow-md transition-all sm:left-[60%] md:w-64"
+              className="pointer-events-none absolute inset-0 left-[55%] w-48 rotate-6 rounded-2xl bg-neutral-500 object-cover shadow-md transition-all top-32 md:top-16 sm:left-[60%] md:w-64"
               priority
             />
           </div>
