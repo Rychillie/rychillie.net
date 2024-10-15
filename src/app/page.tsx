@@ -22,7 +22,7 @@ export default function Home() {
               </em>{' '}
               Design and tech lover, creating content and sharing knowledge over the internet. Find
               out a little more{' '}
-              <CustomLink href="#" className="text-neutral-800 dark:text-neutral-200">
+              <CustomLink href="/about" className="text-neutral-800 dark:text-neutral-200">
                 about me.
               </CustomLink>
             </h1>

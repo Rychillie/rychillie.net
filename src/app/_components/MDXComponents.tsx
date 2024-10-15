@@ -55,7 +55,11 @@ const components = {
   Table
 };
 
-export default function MDX(props: any) {
+const ExtraText = {
+  p: (props: any) => <p className="text-neutral-600 dark:text-neutral-400" {...props} />
+};
+
+export default function MDX(props: any, hasText?: boolean) {
   return (
     <article
       className={c(
@@ -66,7 +70,8 @@ export default function MDX(props: any) {
         {...props}
         components={{
           ...components,
-          ...(props.components || {})
+          ...(props.components || {}),
+          ...(hasText ? ExtraText : {})
         }}
       />
     </article>

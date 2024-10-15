@@ -1,16 +1,15 @@
 import { BackTo, Footer } from '@/app/_components';
 import { getBlogPosts } from '@/lib/content';
 import c from 'clsx';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export function generateMetadata() {
-  return {
-    title: 'Writing',
-    description: 'Infrequent thoughts on technology, design and things in between.'
-  };
-}
+export const metadata: Metadata = {
+  title: 'Writing',
+  description: 'Infrequent thoughts on technology, design and things in between.'
+};
 
-export default function Paget() {
+export default function Blog() {
   let allWritings = getBlogPosts('en');
 
   return (
