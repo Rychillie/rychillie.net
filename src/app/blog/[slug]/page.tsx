@@ -6,18 +6,18 @@ import '@/styles/prose.css';
 import { format, parseISO } from 'date-fns';
 import { notFound } from 'next/navigation';
 
-interface Params {
+export type Params = {
   params: { slug: string };
-}
+};
 
-type Posts = {
+export type Post = {
   metadata: MetadataWriting;
   slug: string;
   content: string;
 };
 
 export default function Page({ params: { slug } }: Params) {
-  let allWritings = getBlogPosts('en') as Posts[];
+  let allWritings = getBlogPosts('en') as Post[];
   let post = allWritings.find((post) => post.slug === slug);
 
   if (!post) {
