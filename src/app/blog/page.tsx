@@ -6,20 +6,12 @@ import Link from 'next/link';
 export default function Paget() {
   let allWritings = getBlogPosts('en');
 
-  console.log(
-    allWritings.map((writing) => {
-      return {
-        title: writing.metadata.title,
-        slug: writing.slug,
-        publishedAt: writing.metadata.publishedAt
-      };
-    })
-  );
-
   return (
-    <div className="py-16 lg:py-32 p-4 lg:p-0 mx-auto w-full max-w-4xl relative flex flex-col lg:grid lg:grid-cols-[1fr_minmax(640px,_1fr)_1fr] h-full gap-8 lg:gap-0">
-      <aside>
-        <BackTo href="/" name="Index" />
+    <div className="min-h-screen py-16 lg:py-32 p-4 lg:p-0 mx-auto w-full max-w-4xl relative flex flex-col lg:grid lg:grid-cols-[1fr_minmax(640px,_1fr)_1fr] h-full gap-8 lg:gap-0">
+      <aside className="relative">
+        <div className="sticky top-32">
+          <BackTo href="/" name="Index" />
+        </div>
       </aside>
 
       <div className="flex flex-col h-full justify-between gap-12">
@@ -56,10 +48,10 @@ export default function Paget() {
                           key={writing.slug}
                           href={`/writing/${writing.slug}`}
                           className={c(
-                            'flex flex-row items-center justify-between py-3 border-t border-neutral-200 dark:border-neutral-800 first:border-t-0 group-last/list:border-b group/item transition-all gap-2'
+                            'flex flex-row items-center justify-between py-3 border-t border-neutral-200 dark:border-neutral-800 sm:first:border-t-0 group-last/list:border-b group/item transition-all gap-2'
                           )}
                         >
-                          <span className="text-neutral-950 dark:text-neutral-50 group-hover/container:text-neutral-600 dark:group-hover/container:text-neutral-400 group-hover/container:group-hover/item:text-neutral-950 dark:group-hover/container:group-hover/item:text-neutral-50 transition-all w-full line-clamp-1">
+                          <span className="text-neutral-950 dark:text-neutral-50 group-hover/container:text-neutral-600 dark:group-hover/container:text-neutral-400 group-hover/container:group-hover/item:text-neutral-950 dark:group-hover/container:group-hover/item:text-neutral-50 transition-all w-full line-clamp-1 font-medium">
                             {writing.metadata.title}
                           </span>
                           <span className="text-sm">
