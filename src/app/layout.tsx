@@ -1,5 +1,7 @@
 import { Providers } from '@/app/_components';
 import '@/styles/tailwind.css';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
@@ -50,6 +52,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" className="scroll-smooth antialiased" suppressHydrationWarning>
       <body className="overflow-x-hidden relative w-screen min-h-screen lg:items-center lg:justify-center lg:flex bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
         <Providers>{children}</Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
