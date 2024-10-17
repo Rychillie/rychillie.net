@@ -1,8 +1,6 @@
-'use client';
-
-import { CustomLink, Icon } from '@/app/_components';
+import { CustomLink, News } from '@/app/_components';
 import { formatCount } from '@/lib';
-import Image from 'next/image';
+import { Suspense } from 'react';
 
 type DescriptionItem =
   | { type: 'text'; text: string }
@@ -11,12 +9,6 @@ type DescriptionItem =
   | { type: 'comma' };
 
 const numberSubscribers = 3200;
-
-const someSubscribers = [
-  { name: 'Igor', image: '/assets/kinark.jpg' },
-  { name: 'Biro Biro Biro', image: '/assets/birobirobiro.jpg' },
-  { name: 'Daniel Lima', image: '/assets/daniellima.jpg' }
-];
 
 const description: DescriptionItem[] = [
   { type: 'text', text: 'Subscribe below, and join me on' },
@@ -72,42 +64,9 @@ export default function NewsHome() {
       </div>
 
       <div className="w-full flex-col justify-center items-center gap-1 flex">
-        <div className="w-full justify-start items-start gap-3 flex">
-          <input
-            className="w-full grow shrink basis-0 h-10 px-4 py-2 bg-white rounded-3xl border border-neutral-200 justify-start items-center gap-2.5 flex placeholder:text-neutral-600 dark:bg-neutral-900/40 dark:border-neutral-800 dark:placeholder:text-neutral-400"
-            placeholder="Enter your email"
-          />
-
-          <button
-            aria-label="subscribe"
-            className="size-10 bg-neutral-200 rounded-3xl border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-800 justify-center items-center gap-2.5 flex"
-          >
-            <Icon
-              name="arrow-right"
-              className="size-6 relative text-neutral-600 dark:text-neutral-400"
-            />
-          </button>
-        </div>
-
-        <div className="w-full justify-center lg:justify-start items-center gap-3 inline-flex">
-          <div className="flex">
-            {someSubscribers.map((item, index) => (
-              <Image
-                width={22}
-                height={22}
-                key={index}
-                loading="lazy"
-                alt={item.name}
-                src={item.image}
-                className="size-[22px] -ml-2 first:m-0 rounded-full border-2 border-neutral-50 dark:border-neutral-950 hover:z-10 hover:scale-125 transition-all cursor-pointer"
-              />
-            ))}
-          </div>
-
-          <span className="text-neutral-600 dark:text-neutral-400 text-xs font-medium">
-            {formattedSubscribers}+ people subscribed
-          </span>
-        </div>
+        <Suspense fallback={<News.Loading />}>
+          <News.Letter />
+        </Suspense>
       </div>
     </div>
   );
