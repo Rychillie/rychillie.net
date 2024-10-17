@@ -2,12 +2,13 @@
   --sh-class: #2d5e9d;
   --sh-identifier: black;
   --sh-sign: #8996a3;
-  --sh-string: #007f7a;
-  --sh-keyword: #e02518;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
+  --sh-string: #005d59;
+  --sh-keyword: #9b170e;
+  --sh-comment: #585151;
+  --sh-jsxliterals: #41449d;
+  --sh-property: #8d3812;
+  --sh-entity: #8a3610;
+  --sh-space: #000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,11 +17,16 @@
     --sh-identifier: white;
     --sh-keyword: #f47067;
     --sh-string: #0fa295;
+    --sh-space: #fff;
+    --sh-entity: #f38350;
+    --sh-jsxliterals: #9598f5;
+    --sh-property: #e25a1c;
+    --sh-comment: #a19595;
   }
 }
 
 .prose {
-  @apply max-w-3xl text-black antialiased marker:text-[#6F6F6F] dark:text-[#EDEDED] marker:dark:text-neutral-400;
+  @apply max-w-4xl text-black antialiased marker:text-[#6F6F6F] dark:text-[#EDEDED] marker:dark:text-neutral-400;
 }
 
 .prose > blockquote {
@@ -57,6 +63,20 @@
   @apply text-center;
 }
 
+p > code {
+  @apply relative px-2;
+}
+
+p > code::before {
+  @apply absolute inset-x-0 -inset-y-1 bg-neutral-500/10 dark:bg-neutral-500/15 border border-neutral-200 dark:border-neutral-800 rounded-md -z-10;
+  content: '';
+}
+
+.prose :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::before,
+.prose :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::after {
+  content: '';
+}
+
 .prose pre {
-  @apply border bg-neutral-100 border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800 rounded-md p-4 overflow-x-auto;
+  @apply border bg-neutral-100 border-neutral-200 dark:bg-neutral-900/40 dark:border-neutral-800 rounded-md p-4 overflow-x-auto;
 }

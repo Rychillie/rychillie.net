@@ -1,14 +1,10 @@
-import createNextIntlPlugin from 'next-intl/plugin';
-
-const withNextIntl = createNextIntlPlugin();
-
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: false,
-  transpilePackages: ['next-mdx-remote'],
-  experimental: {
-    ppr: true
+  env: {
+    URL: process.env.URL
   }
 };
 
-export default withNextIntl(nextConfig);
+export default nextConfig;
