@@ -1,8 +1,6 @@
-import { BackTo, Footer } from '@/app/_components';
+import { BackTo, Footer, Listing } from '@/app/_components';
 import { getBlogPosts } from '@/lib/content';
-import c from 'clsx';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Writing',
@@ -25,52 +23,7 @@ export default function Blog() {
           <h1 className="text-neutral-950 dark:text-neutral-50 text-lg font-bold">Writing</h1>
 
           <div className="group/container transition-all">
-            {Object.entries(
-              allWritings.reduce((acc: { [year: number]: any[] }, writing) => {
-                const year = new Date(writing.metadata.publishedAt).getFullYear();
-                if (!acc[year]) {
-                  acc[year] = [];
-                }
-                acc[year].push(writing);
-                return acc;
-              }, {})
-            )
-              .sort((a, b) => Number(b[0]) - Number(a[0]))
-              .map(([year, writings]) => (
-                <div
-                  key={year}
-                  className="flex flex-col justify-start sm:flex-row w-full sm:justify-between border-t border-neutral-200 dark:border-neutral-800 sm:gap-20 group/list text-neutral-600 dark:text-neutral-400 transition-all"
-                >
-                  <h2 className="h-12 w-fit flex items-center justify-center text-sm">{year}</h2>
-                  <div className="lg:max-w-lg w-full flex flex-col gap-1 last:pb-1">
-                    {writings
-                      .sort(
-                        (a, b) =>
-                          new Date(b.metadata.publishedAt).getTime() -
-                          new Date(a.metadata.publishedAt).getTime()
-                      )
-                      .map((writing) => (
-                        <Link
-                          key={writing.slug}
-                          href={`/blog/${writing.slug}`}
-                          className={c(
-                            'flex flex-row items-center justify-between py-3 border-t border-neutral-200 dark:border-neutral-800 sm:first:border-t-0 group-last/list:border-b group/item transition-all gap-2'
-                          )}
-                        >
-                          <span className="text-neutral-950 dark:text-neutral-50 group-hover/container:text-neutral-600 dark:group-hover/container:text-neutral-400 group-hover/container:group-hover/item:text-neutral-950 dark:group-hover/container:group-hover/item:text-neutral-50 transition-all w-full line-clamp-1 font-medium">
-                            {writing.metadata.title}
-                          </span>
-                          <span className="text-sm">
-                            {new Date(writing.metadata.publishedAt).toLocaleDateString('pt-BR', {
-                              month: '2-digit',
-                              day: '2-digit'
-                            })}
-                          </span>
-                        </Link>
-                      ))}
-                  </div>
-                </div>
-              ))}
+            <Listing items={allWritings} />
           </div>
         </main>
 
