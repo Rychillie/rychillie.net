@@ -30,8 +30,23 @@ export async function generateMetadata({
   let {
     title,
     publishedAt: publishedTime,
-    summary: description
+    summary: description,
+    image
   } = post.metadata as MetadataWriting;
+
+  let ogImage = image
+    ? `https://rychillie.net${image}`
+    : `https://rychillie.net/api/og?title=${title}`;
+
+  const images = [
+    {
+      url: ogImage,
+      width: 1200,
+      height: 630,
+      alt: description,
+      type: 'image/png'
+    }
+  ];
 
   return {
     title,
@@ -41,12 +56,16 @@ export async function generateMetadata({
       description,
       type: 'article',
       publishedTime,
-      url: `https://rychillie.net/blog/${post.slug}`
+      url: `https://rychillie.net/blog/${post.slug}`,
+      images
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description
+      description,
+      creator: '@rychillie',
+      site: '@rychillie',
+      images
     }
   };
 }

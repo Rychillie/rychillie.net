@@ -123,7 +123,7 @@ function Photo({
           >
             <Halo strength={50} className="flex items-center">
               <span
-                style={{ backgroundImage: `url(${process.env.URL}/assets/Photopaper.png)` }}
+                style={{ backgroundImage: `url(https://rychillie.net/assets/Photopaper.png)` }}
                 className="absolute size-[500px] rotate-[-20deg] bg-[length:280px] bg-repeat"
               />
               <div className="z-[1] px-6">
