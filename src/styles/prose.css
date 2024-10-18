@@ -63,13 +63,25 @@
   @apply text-center;
 }
 
-p > code {
-  @apply relative px-2;
+p > code,
+p > pre {
+  @apply relative px-2 whitespace-nowrap;
 }
 
+p > pre::before,
 p > code::before {
-  @apply absolute inset-x-0 -inset-y-1 bg-neutral-500/10 dark:bg-neutral-500/15 border border-neutral-200 dark:border-neutral-800 rounded-md -z-10;
+  @apply absolute inset-x-0 -inset-y-1 bg-neutral-500/10 border border-neutral-200 dark:border-neutral-800/60 rounded-md -z-10;
   content: '';
+}
+
+p > pre,
+p > code {
+  @apply text-neutral-800 dark:text-neutral-200;
+}
+
+p > pre span,
+p > code span {
+  color: inherit !important;
 }
 
 .prose :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::before,

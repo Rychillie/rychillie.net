@@ -7,6 +7,7 @@ export { default as HeaderImage } from './header-image';
 export { default as HomeLinks } from './home-links';
 export { default as Icon } from './icon';
 export { default as ImageSection } from './image-section';
+export { default as Listing } from './listing';
 export { default as LoadingDots } from './loading-dots';
 export { default as Modal } from './modal';
 export { default as NewsHome } from './news-home';

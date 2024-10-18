@@ -1,0 +1,312 @@
+---
+title: Getting Started on Swift by creating a CRUD with Vapor
+summary: A step-by-step guide to create your first RESTful API using Swift, even without prior experience
+publishedAt: '2024-10-18'
+---
+
+If you're used to seeing Swift only in the context of iOS development, prepare for a surprise! With the Vapor framework, we can use Swift to create robust and efficient web applications. In this beginner-friendly guide, we'll explore how to create a CRUD (Create, Read, Update, Delete) for a simple TODO List using Vapor on the backend and [Neon](https://neon.tech/) as our PostgreSQL database service.
+
+## What is Swift and why use it for web development?
+
+Swift is a modern programming language created by Apple. Although it's best known for iOS development, its features like safety, speed, and simplicity make it an excellent choice for web development as well.
+
+## Introduction to Vapor
+
+Vapor is a web framework for Swift that allows us to create APIs and web applications quickly and easily. It offers a range of tools that facilitate common web development tasks such as routing, authentication, and database interaction.
+
+## What are we going to build?
+
+We're going to create an API to manage a task list. Our API will allow:
+
+1. Creating new tasks
+2. Listing all tasks
+3. Viewing details of a specific task
+4. Updating an existing task
+5. Deleting a task
+
+## Prerequisites
+
+Before we begin, you'll need to install:
+
+1. [Swift](https://www.swift.org/install/): The programming language we'll use.
+2. [Vapor Toolbox](https://docs.vapor.codes/): A command-line tool that facilitates the creation and management of Vapor projects.
+3. An account on [Neon](https://neon.tech/): A cloud PostgreSQL database service.
+
+Don't worry if you've never used these tools before. We'll go through each step together!
+
+## Project Setup
+
+Let's start by creating our Vapor project. Open your terminal and type:
+
+```bash
+vapor new TodoListAPI
+cd TodoListAPI
+```
+
+This creates a new Vapor project called "TodoListAPI" and enters the project folder.
+
+Now, let's configure our project dependencies. Open the `Package.swift` file in your favorite text editor and replace its contents with:
+
+```swift
+// swift-tools-version:5.2
+import PackageDescription
+
+let package = Package(
+    name: "TodoListAPI",
+    platforms: [
+       .macOS(.v10_15)
+    ],
+    dependencies: [
+        // 1. Main Vapor framework
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        // 2. Vapor's ORM for database interaction
+        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
+        // 3. Driver for PostgreSQL
+        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0")
+    ],
+    targets: [
+        .target(
+            name: "App",
+            dependencies: [
+                .product(name: "Fluent", package: "fluent"),
+                .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
+                .product(name: "Vapor", package: "vapor")
+            ],
+            swiftSettings: [
+                .unsafeFlags(["-cross-module-optimization"], .when(configuration: .release))
+            ]
+        ),
+        .target(name: "Run", dependencies: [.target(name: "App")]),
+        .testTarget(name: "AppTests", dependencies: [
+            .target(name: "App"),
+            .product(name: "XCTVapor", package: "vapor"),
+        ])
+    ]
+)
+```
+
+This file defines our project dependencies. We're using Vapor, Fluent (Vapor's ORM), and the PostgreSQL driver.
+
+## Database Configuration
+
+Now, let's configure the connection to our database. In the `configure.swift` file on the `./Sources/App/` folder, add the following code:
+
+```swift
+import Fluent
+import FluentPostgresDriver
+import Vapor
+
+public func configure(_ app: Application) throws {
+    // Database configuration
+    app.databases.use(.postgres(
+        hostname: Environment.get("DATABASE_HOST") ?? "localhost",
+        port: Environment.get("DATABASE_PORT").flatMap(Int.init(_:)) ?? PostgresConfiguration.ianaPortNumber,
+        username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
+        password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
+        database: Environment.get("DATABASE_NAME") ?? "vapor_database"
+    ), as: .psql)
+
+    // Additional configurations will come here...
+}
+```
+
+This configuration uses environment variables to define the database connection details. To set these variables, create a file called `.env` in the root of your project with the following content:
+
+```.env
+DATABASE_HOST="your-neon-host.tech"
+DATABASE_PORT=5432
+DATABASE_USERNAME="your-username"
+DATABASE_PASSWORD="your-password"
+DATABASE_NAME="your-database"
+```
+
+Replace the above values with those provided by Neon when you create your database.
+
+## Creating the Data Model
+
+In Swift with Vapor, we use "models" to represent our database entities. Let's create a model for our tasks.
+
+Create a new file called `Todo.swift` in the `Sources/App/Models` folder and add the following code:
+
+```swift
+import Fluent
+import Vapor
+
+final class Todo: Model, Content {
+    // 1. Name of the table in the database
+    static let schema = "todos"
+
+    // 2. Unique ID of the task
+    @ID(key: .id)
+    var id: UUID?
+
+    // 3. Title of the task
+    @Field(key: "title")
+    var title: String
+
+    // 4. Completion status of the task
+    @Field(key: "completed")
+    var completed: Bool
+
+    // 5. Empty initializer required by Fluent
+    init() { }
+
+    // 6. Custom initializer
+    init(id: UUID? = nil, title: String, completed: Bool = false) {
+        self.id = id
+        self.title = title
+        self.completed = completed
+    }
+}
+```
+
+This model defines the structure of our tasks in the database.
+
+## Creating the Migration
+
+Migrations are used to create and update the database structure. Let's create a migration for our tasks table.
+
+Create a new file called `CreateTodo.swift` in the `Sources/App/Migrations` folder:
+
+```swift
+import Fluent
+
+struct CreateTodo: Migration {
+    // 1. Table creation
+    func prepare(on database: Database) -> EventLoopFuture<Void> {
+        return database.schema("todos")
+            .id()
+            .field("title", .string, .required)
+            .field("completed", .bool, .required, .custom("DEFAULT FALSE"))
+            .create()
+    }
+
+    // 2. Table removal (in case we need to revert the migration)
+    func revert(on database: Database) -> EventLoopFuture<Void> {
+        return database.schema("todos").delete()
+    }
+}
+```
+
+Now, add this migration to the `configure.swift` file:
+
+```swift
+app.migrations.add(CreateTodo())
+```
+
+## Creating the Controller
+
+Controllers are responsible for managing CRUD operations. Let's create a controller for our tasks.
+
+Create a new file called `TodoController.swift` in the `Sources/App/Controllers` folder:
+
+```swift
+import Fluent
+import Vapor
+
+struct TodoController: RouteCollection {
+    func boot(routes: RoutesBuilder) throws {
+        let todos = routes.grouped("todos")
+        todos.get(use: index)
+        todos.post(use: create)
+        todos.group(":todoID") { todo in
+            todo.get(use: show)
+            todo.put(use: update)
+            todo.delete(use: delete)
+        }
+    }
+
+    // 1. List all tasks
+    func index(req: Request) throws -> EventLoopFuture<[Todo]> {
+        return Todo.query(on: req.db).all()
+    }
+
+    // 2. Create a new task
+    func create(req: Request) throws -> EventLoopFuture<Todo> {
+        let todo = try req.content.decode(Todo.self)
+        return todo.save(on: req.db).map { todo }
+    }
+
+    // 3. Show a specific task
+    func show(req: Request) throws -> EventLoopFuture<Todo> {
+        guard let todoID = req.parameters.get("todoID", as: UUID.self) else {
+            throw Abort(.badRequest)
+        }
+        return Todo.find(todoID, on: req.db)
+            .unwrap(or: Abort(.notFound))
+    }
+
+    // 4. Update an existing task
+    func update(req: Request) throws -> EventLoopFuture<Todo> {
+        guard let todoID = req.parameters.get("todoID", as: UUID.self) else {
+            throw Abort(.badRequest)
+        }
+        let updatedTodo = try req.content.decode(Todo.self)
+        return Todo.find(todoID, on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { todo in
+                todo.title = updatedTodo.title
+                todo.completed = updatedTodo.completed
+                return todo.save(on: req.db).map { todo }
+            }
+    }
+
+    // 5. Delete a task
+    func delete(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        guard let todoID = req.parameters.get("todoID", as: UUID.self) else {
+            throw Abort(.badRequest)
+        }
+        return Todo.find(todoID, on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { $0.delete(on: req.db) }
+            .transform(to: .noContent)
+    }
+}
+```
+
+## Configuring the Routes
+
+Finally, let's configure our routes. In the `Sources/App/routes.swift` file, add:
+
+```swift
+import Fluent
+import Vapor
+
+func routes(_ app: Application) throws {
+    try app.register(collection: TodoController())
+}
+```
+
+## Running and Testing
+
+Now we're ready to run our application! In the terminal, execute:
+
+```bash
+vapor run migrate
+vapor run
+```
+
+The first command runs our migrations, creating the table in the database. The second starts the server.
+
+You can test the API using an HTTP client like Postman or cURL:
+
+- Create a task (POST): `http://localhost:8080/todos`
+  Request body: `{"title": "Learn Swift", "completed": false}`
+- List all tasks (GET): `http://localhost:8080/todos`
+- Get a specific task (GET): `http://localhost:8080/todos/{id}`
+- Update a task (PUT): `http://localhost:8080/todos/{id}`
+  Request body: `{"title": "Learn Swift and Vapor", "completed": true}`
+- Delete a task (DELETE): `http://localhost:8080/todos/{id}`
+
+## Conclusion
+
+Congratulations! You've just created your first RESTful API using Swift and Vapor. This is just the beginning of what you can do with these powerful tools.
+
+Some advantages of using Swift for web development include:
+
+1. **Type safety**: Swift is a strongly typed language, which helps prevent many common errors.
+2. **Performance**: Swift is known for its fast performance.
+3. **Modern and clear syntax**: Swift's syntax is designed to be easy to read and write.
+4. **Growing ecosystem**: With frameworks like Vapor, the Swift web development ecosystem is constantly expanding.
+
+Keep exploring and building with Swift and Vapor. There's a world of possibilities waiting for you!

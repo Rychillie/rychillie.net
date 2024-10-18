@@ -2,7 +2,7 @@ import { getMDXData } from '@/lib/content';
 import { MetadataWriting } from '@/lib/content/parse-frontmatter';
 import path from 'path';
 
-type Posts = {
+export type Posts = {
   metadata: MetadataWriting;
   slug: string;
   content: string;
