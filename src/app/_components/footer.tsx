@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="text-sm">Copyright 2024 · Made by Rychillie</div>
       <div className="text-xs font-medium">
         <CustomLink
-          href="/under-development"
+          href="/about#contact"
           className="hover:text-neutral-800 dark:hover:text-neutral-200"
         >
           Contact

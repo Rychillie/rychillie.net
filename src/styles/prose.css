@@ -26,7 +26,7 @@
 }
 
 .prose {
-  @apply max-w-4xl text-black antialiased marker:text-[#6F6F6F] dark:text-[#EDEDED] marker:dark:text-neutral-400;
+  @apply max-w-5xl text-black antialiased marker:text-[#6F6F6F] dark:text-[#EDEDED] marker:dark:text-neutral-400;
 }
 
 .prose > blockquote {

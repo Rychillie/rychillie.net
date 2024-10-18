@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function UnderDevelopment() {
   return (
-    <main className="min-h-screen py-16 lg:py-32 p-4 lg:p-0 mx-auto w-full max-w-4xl relative flex items-center justify-center h-full flex-col gap-8">
+    <main className="min-h-screen py-16 lg:py-32 p-4 lg:p-0 mx-auto w-full max-w-5xl relative flex items-center justify-center h-full flex-col gap-8">
       <h1 className="text-neutral-950 dark:text-neutral-50 text-2xl font-bold">
         Under Development
       </h1>

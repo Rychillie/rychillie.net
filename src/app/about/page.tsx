@@ -23,7 +23,7 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen py-16 lg:py-32 px-4 lg:px-0 mx-auto w-full max-w-4xl relative flex flex-col lg:grid lg:grid-cols-[1fr_minmax(640px,_1fr)_1fr] h-full gap-8 lg:gap-0">
+    <div className="min-h-screen py-16 lg:py-32 px-4 lg:px-0 mx-auto w-full max-w-5xl relative flex flex-col lg:grid lg:grid-cols-[1fr_minmax(640px,_1fr)_1fr] h-full gap-8 lg:gap-0">
       <aside className="relative">
         <div className="sticky top-32 z-">
           <BackTo href="/" name="Index" />
@@ -101,11 +101,7 @@ export default function Page() {
             </div>
           </section>
 
-          <hr className="border-neutral-200 dark:border-neutral-800 mb-1 mt-3" />
-
           <Contact />
-
-          <hr className="border-neutral-200 dark:border-neutral-800 mt-6 mb-4" />
         </main>
 
         <Footer />

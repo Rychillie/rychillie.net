@@ -60,7 +60,7 @@ export default function Page({ params: { slug } }: Params) {
   }
 
   return (
-    <div className="min-h-screen py-16 lg:py-32 px-4 lg:px-0 mx-auto w-full max-w-4xl relative flex flex-col lg:grid lg:grid-cols-[1fr_minmax(640px,_1fr)_1fr] h-full gap-8 lg:gap-0">
+    <div className="min-h-screen py-16 lg:py-32 px-4 lg:px-0 mx-auto w-full max-w-5xl relative flex flex-col lg:grid lg:grid-cols-[1fr_minmax(640px,_1fr)_1fr] h-full gap-8 lg:gap-0">
       <aside className="relative">
         <div className="sticky top-32">
           <BackTo href="/blog" name="Writing" />
