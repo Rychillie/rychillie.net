@@ -4,7 +4,7 @@ import Icon from './icon';
 const links = [
   { title: 'Writing', href: '/blog' },
   { title: 'Projects', href: '/under-development' },
-  { title: 'Diary', href: '/diary' }
+  { title: 'Diary', href: '/under-development' }
 ];
 
 export default function HomeLinks() {
