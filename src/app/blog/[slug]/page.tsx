@@ -70,7 +70,7 @@ export async function generateMetadata({
   };
 }
 
-export default function Page({ params: { slug } }: Params) {
+export default function BlogPost({ params: { slug } }: Params) {
   let allWritings = getBlogPosts('en') as Post[];
   let post = allWritings.find((post) => post.slug === slug);
 
