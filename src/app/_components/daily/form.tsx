@@ -1,10 +1,10 @@
 'use client';
 
 import { useMediaQuery } from '@/lib/hooks';
-import BackTo from './back-to';
-import Footer from './footer';
+import BackTo from '../back-to';
+import Footer from '../footer';
 
-export default function DiaryForm() {
+export default function DailyForm() {
   const { isDesktop } = useMediaQuery();
 
   return (

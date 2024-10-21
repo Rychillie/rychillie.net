@@ -1,12 +1,10 @@
+import { Footer, Form, Listing } from '@/app/_components/daily';
 import '@/styles/prose.css';
-import DiaryFooter from '../_components/diary-footer';
-import DiaryForm from '../_components/diary-form';
-import DiaryListing from '../_components/diary-listing';
 
 export default function DailyPage() {
   return (
     <div className="relative lg:max-w-5xl lg:mx-auto w-full h-screen flex flex-col px-4 lg:px-0 lg:pl-96">
-      <DiaryForm />
+      <Form />
 
       <div className="py-16 lg:py-32 lg:pl-24 lg:ml-14">
         <div className="z-[99999] left-0 lg:left-[calc(50vw-6px)] pointer-events-none fixed lg:fixed inset-y-0 overflow-hidden lg:overflow-visible">
@@ -20,16 +18,16 @@ export default function DailyPage() {
                 ></path>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#:S4:)"></rect>
+            <rect width="100%" height="100%" fill="url(#:S4:)" />
           </svg>
         </div>
 
         <div>
-          <DiaryListing />
+          <Listing />
         </div>
       </div>
 
-      <DiaryFooter />
+      <Footer />
     </div>
   );
 }
