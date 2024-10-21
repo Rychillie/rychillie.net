@@ -6,7 +6,7 @@ import MDX from '../MDXComponents';
 export default function DailyListing() {
   let allWritings = getDailyPosts('en');
 
-  return allWritings.length >= 0 ? (
+  return allWritings.length <= 0 ? (
     <p>ops, no daily posts yet!</p>
   ) : (
     allWritings

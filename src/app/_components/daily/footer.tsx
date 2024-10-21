@@ -3,8 +3,16 @@
 import { useMediaQuery } from '@/lib/hooks';
 import Footer from '../footer';
 
-export default function DailyFooter() {
+type Props = {
+  showDesktop?: boolean;
+};
+
+export default function DailyFooter({ showDesktop }: Props) {
   const { isDesktop } = useMediaQuery();
+
+  if (showDesktop) {
+    return isDesktop && <Footer />;
+  }
 
   return (
     !isDesktop && (
