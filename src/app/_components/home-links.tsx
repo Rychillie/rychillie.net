@@ -3,8 +3,8 @@ import Icon from './icon';
 
 const links = [
   { title: 'Writing', href: '/blog' },
-  { title: 'Projects', href: '/under-development' },
-  { title: 'Diary', href: '/under-development' }
+  { title: 'Things', href: '/under-development' },
+  { title: 'Daily', href: '/under-development' }
 ];
 
 export default function HomeLinks() {
