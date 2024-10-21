@@ -27,8 +27,6 @@ export default function DailyListing() {
               </time>
             </div>
 
-            <p className="text-neutral-600 dark:text-neutral-400">{writing.metadata.summary}</p>
-
             <MDX source={writing.content} />
           </div>
         );
