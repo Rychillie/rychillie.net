@@ -22,7 +22,7 @@ export default function DailyPage() {
           </svg>
         </div>
 
-        <div>
+        <div className="space-y-12">
           <Listing />
         </div>
       </div>
