@@ -22,7 +22,7 @@ allDailyPosts.map((post) => {
     guid: `${baseUrl}/daily#${post.slug}`,
     url: `${baseUrl}/daily#${post.slug}`,
     date: post.metadata.publishedAt,
-    description: post.metadata.summary
+    description: post.content
   });
 });
 
