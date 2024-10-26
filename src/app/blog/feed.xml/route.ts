@@ -1,8 +1,7 @@
-import { getBlogPosts, getDailyPosts } from '@/lib/content';
+import { getBlogPosts } from '@/lib/content';
 import RSS from 'rss';
 
 let allBlogPosts = getBlogPosts('en');
-let allDailyPosts = getDailyPosts('en');
 
 const baseUrl = process.env.URL || 'https://rychillie.net';
 
