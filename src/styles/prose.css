@@ -94,5 +94,5 @@ p > code span {
 }
 
 .md\:prose-base :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-  @apply m-0 rounded-lg;
+  @apply m-0 rounded-lg w-full h-auto;
 }

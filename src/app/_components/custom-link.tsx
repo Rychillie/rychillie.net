@@ -11,6 +11,7 @@ export interface CustomLinkProps {
   arrowIcon?: boolean;
   hideUnderline?: boolean;
   className?: string;
+  target?: string;
 }
 
 export default function CustomLink({
@@ -19,7 +20,8 @@ export default function CustomLink({
   ariaLabel,
   arrowIcon,
   hideUnderline,
-  className
+  className,
+  target
 }: CustomLinkProps) {
   const isInternalLink = href.startsWith('/');
 
@@ -34,7 +36,7 @@ export default function CustomLink({
 
   if (isInternalLink) {
     return (
-      <Link href={href} className={c(classes)} aria-label={ariaLabel}>
+      <Link href={href} className={c(classes)} aria-label={ariaLabel} target={target}>
         {arrowIcon && (
           <Icon
             name="arrow-top-left"

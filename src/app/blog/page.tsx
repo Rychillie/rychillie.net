@@ -1,10 +1,15 @@
-import { BackTo, Footer, Listing } from '@/app/_components';
+import { BackTo, CustomLink, Footer, Listing } from '@/app/_components';
 import { getBlogPosts } from '@/lib/content';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Writing',
-  description: 'Infrequent thoughts on technology, design and things in between.'
+  description: 'Infrequent thoughts on technology, design and things in between.',
+  alternates: {
+    types: {
+      'application/rss+xml': `${process.env.URL}/blog/feed.xml`
+    }
+  }
 };
 
 export default function Blog() {
@@ -20,7 +25,18 @@ export default function Blog() {
 
       <div className="flex flex-col h-full justify-between gap-12">
         <main className="flex flex-col gap-10">
-          <h1 className="text-neutral-950 dark:text-neutral-50 text-lg font-bold">Writing</h1>
+          <div className="flex items-center justify-between w-full">
+            <h1 className="text-neutral-950 dark:text-neutral-50 text-lg font-bold">Writing</h1>
+
+            <CustomLink
+              hideUnderline
+              className="text-xs font-medium"
+              href="/blog/feed.xml"
+              target="_blank"
+            >
+              RSS Feed
+            </CustomLink>
+          </div>
 
           <div className="group/container transition-all">
             <Listing items={allWritings} />

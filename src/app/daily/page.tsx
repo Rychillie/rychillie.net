@@ -1,5 +1,16 @@
 import { Footer, Form, Listing } from '@/app/_components/daily';
 import '@/styles/prose.css';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Daily',
+  description: 'Sharing my daily thoughts, ideas and experiences.',
+  alternates: {
+    types: {
+      'application/rss+xml': `${process.env.URL}/daily/feed.xml`
+    }
+  }
+};
 
 export default function DailyPage() {
   return (
