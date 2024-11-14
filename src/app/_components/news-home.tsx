@@ -22,6 +22,10 @@ const description: DescriptionItem[] = [
   { content: { text: 'Threads', url: 'https://www.threads.net/@rychillie' }, type: 'link' },
   { type: 'comma' },
   { content: { text: 'Instagram', url: 'https://www.instagram.com/rychillie' }, type: 'link' },
+  { type: 'comma' },
+  { content: { text: 'Bluesky', url: 'https://bsky.app/profile/rychillie.net' }, type: 'link' },
+  { type: 'comma' },
+  { content: { text: 'X', url: 'https://x.com/rychillie' }, type: 'link' },
   { type: 'space' },
   { type: 'text', text: 'to follow along!' }
 ];

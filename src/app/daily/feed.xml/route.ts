@@ -22,7 +22,12 @@ allDailyPosts.map((post) => {
     guid: `${baseUrl}/daily#${post.slug}`,
     url: `${baseUrl}/daily#${post.slug}`,
     date: post.metadata.publishedAt,
-    description: post.content
+    description: post.content,
+    custom_elements: [
+      {
+        'content:encoded': post.content
+      }
+    ]
   });
 });
 

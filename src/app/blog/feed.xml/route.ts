@@ -22,7 +22,12 @@ allBlogPosts.map((post) => {
     guid: `${baseUrl}/blog/${post.slug}`,
     url: `${baseUrl}/blog/${post.slug}`,
     date: post.metadata.publishedAt,
-    description: post.content
+    description: post.content,
+    custom_elements: [
+      {
+        'content:encoded': post.content
+      }
+    ]
   });
 });
 
