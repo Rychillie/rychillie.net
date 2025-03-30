@@ -17,7 +17,7 @@ export default function Contact() {
     },
     {
       label: 'Email',
-      href: 'rychillie@rychillie.net',
+      href: 'mailto:rychillie@rychillie.net',
       ariaLabel: 'email address'
     }
   ];
